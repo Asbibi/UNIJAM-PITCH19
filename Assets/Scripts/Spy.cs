@@ -5,13 +5,14 @@ using UnityEngine;
 public class Spy : MonoBehaviour
 {
     // Start is called before the first frame update
-    virtual protected void Start()
+    void Start()
     {
-        GameManager.onTroubleDone += OnTroubleNotified;
+        
     }
 
-    virtual protected void OnTroubleNotified()
+    // Update is called once per frame
+    void Update()
     {
-        Debug.LogWarning("Player has caused troubles");
+        
     }
 }

@@ -16,11 +16,9 @@ public class PlayerControler : MonoBehaviour
     private bool walledL = false;
 
     [SerializeField]
-    private GameObject sword1;
+    private GameObject sword = null;
     [SerializeField]
-    private GameObject sword2;
     private float playerSpeed = 200;
-
 
     [Header("Interactions")]
     private GameObject currentInteractableObject = null;
@@ -94,9 +92,6 @@ public class PlayerControler : MonoBehaviour
         if (attacking)
         {
             currentAttackFrames++;
-            if (currentAttackFrames > attackFrames *3/4){
-                sword2.SetActive(true);
-            }
             if (currentAttackFrames > attackFrames)
             {
                 StopSwordAttack();
@@ -109,17 +104,15 @@ public class PlayerControler : MonoBehaviour
         if (!attacking)
         {
             currentAttackFrames = 0;
-            sword1.SetActive(true);
+            sword.SetActive(true);
             attacking = true;
             animator.SetBool("isAttacking", true);
         }
     }
 
-
     public void StopSwordAttack()
     {
-        sword1.SetActive(false);
-        sword2.SetActive(false);
+        sword.SetActive(false);
         attacking = false;
         animator.SetBool("isAttacking", false);
     }
@@ -139,17 +132,12 @@ public class PlayerControler : MonoBehaviour
             {
                 StartCoroutine(BalconJump(currentInteractableObject.transform.position.y, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
             }
-            else if (currentInteractableObject.GetComponent<Interaction>() != null)
+            else
             {
-                currentInteractableObject.GetComponent<Interaction>().Interact();
             }
         }
     }
 
-    public void FreePlayer()
-    {
-        canMove = true;
-    }
 
     void OnTriggerEnter2D(Collider2D col)
     {

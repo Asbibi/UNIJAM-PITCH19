@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpyMage : MonoBehaviour
+public class InteractionBase : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,4 +15,5 @@ public class SpyMage : MonoBehaviour
     {
         
     }
+
 }
