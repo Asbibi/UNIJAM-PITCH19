@@ -7,8 +7,9 @@ public class SwordAttack : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D target)
+    private void OnTriggerStay2D(Collider2D target)
     {
+        Debug.Log("Colide");
         if (target.CompareTag("Destructible"))
         {
             Debug.Log("sos");

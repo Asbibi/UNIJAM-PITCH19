@@ -7,8 +7,8 @@ public class Destructible : MonoBehaviour
     [SerializeField]
     private int points = 0;
     [SerializeField]
-    private Sprite broken;
-    private SpriteRenderer spriteRenderer;
+    public Sprite broken;
+    public SpriteRenderer spriteRenderer;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
