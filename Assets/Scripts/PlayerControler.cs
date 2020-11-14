@@ -11,14 +11,17 @@ public class PlayerControler : MonoBehaviour
     private Vector2 InputSpeed;
     private int facingDirection;
     private bool canMove;
+    private bool attacking;
 
-
-
+    [SerializeField]
+    private GameObject sword;
     [SerializeField]
     private float playerSpeed;
     [SerializeField]
     private LayerMask ladderLayerM;
-
+    [SerializeField]
+    private int attackFrames;
+    private int currentAttackFrames;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,7 @@ public class PlayerControler : MonoBehaviour
         playerBC = GetComponent<BoxCollider2D>();
         facingDirection = 1;
         canMove = true;
+        attacking = false;
     }
 
     // Update is called once per frame
@@ -34,6 +38,19 @@ public class PlayerControler : MonoBehaviour
     {
         MoveHorizontal();
         TurnAround();
+        AttackTimer();
+    }
+
+    private void AttackTimer()
+    {
+        if (attacking)
+        {
+            currentAttackFrames++;
+            if (currentAttackFrames > attackFrames)
+            {
+                StopSwordAttack();
+            }
+        }
     }
 
     private void TurnAround()
@@ -59,6 +76,22 @@ public class PlayerControler : MonoBehaviour
 
     public void Interact()
     {
+    }
+
+    public void SwordAttack()
+    {
+        if (!attacking)
+        {
+            currentAttackFrames = 0;
+            sword.SetActive(true);
+            attacking = true;
+        }
+    }
+
+    public void StopSwordAttack()
+    {
+        sword.SetActive(false);
+        attacking = false;
     }
 
     public void SetInputSpeed(Vector2 InputSpeed)
