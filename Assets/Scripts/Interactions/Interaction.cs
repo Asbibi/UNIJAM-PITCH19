@@ -6,8 +6,12 @@ public abstract class Interaction : MonoBehaviour
 {
     [SerializeField]
     private int animationTime;
+    [SerializeField]
+    protected int pointsGiven;
+
     private PlayerControler playerControler;
     protected bool interactible = true;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -18,7 +18,6 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private GameObject sword1;
     [SerializeField]
-    [SerializeField]
     private GameObject sword2;
     private float playerSpeed = 200;
 

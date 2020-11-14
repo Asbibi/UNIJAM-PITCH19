@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class InteractionEatable : Interaction
 {
+    [SerializeField]
+    private Sprite eaten;
+    private SpriteRenderer spriteRenderer;
+    public void Start()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
+
+
     public override void Interact()
     {
         if (interactible)
@@ -12,14 +21,12 @@ public class InteractionEatable : Interaction
 
             StartCoroutine(WaitForAnimation());
 
-            GetComponent<Renderer>().enabled = false;
-        }
-        
-    }
+            spriteRenderer.sprite = eaten;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+            int NbPoints = Random.Range(0, pointsGiven);
+
+            Debug.Log("adding " + NbPoints + " points");
+        }
         
     }
 
