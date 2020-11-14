@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerControler player = null;
     [SerializeField] MasterController master = null;
+    public float gameTime = 60;
 
     private void Awake()
     {
@@ -17,40 +18,31 @@ public class GameManager : MonoBehaviour
             Destroy(player.gameObject);
             Destroy(master.gameObject);
             // Detruire le GameManager
-            Destroy(gameObject); // attention à toujours detruire le gameobject sinon ca detruit juste le com^ponent
+            Destroy(gameObject); // attention à toujours detruire le gameobject sinon ca detruit juste le component
         }
         else
         {
             instance = this;
-            // eventuellement faire des initialisations
+            StartGame();
         }
 
     }
 
-
-  
-
-
-
+    private void StartGame()
+    {
+        master.InitTimes(0, gameTime);
+    }
 
     // Example static public
-    static public void MethodExample()
+    static public void EndGame()
     {
         if (instance != null)
         {
-            // ....
-            instance.doSmtgExample();
-            // ....
+            instance.master.transform.x - instance.player.transform.x
         }
         else
         {
             Debug.LogError("GameManager instance null");
         }
-    }
-
-    // Example private
-    private void doSmtgExample()
-    {
-
     }
 }

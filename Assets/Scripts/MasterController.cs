@@ -11,8 +11,6 @@ public class MasterController : MonoBehaviour
     private float travelTime = 1;
     private bool started = false;
 
-
-
     public void InitTimes(float _waitTime, float _travelTime)
     {
         waitTime = _waitTime;
@@ -41,6 +39,9 @@ public class MasterController : MonoBehaviour
             Debug.Log("Game is Over");
             started = false;
         }
+
+        //Check position joueur par le game manager
+        GameManager.
     }
 
     IEnumerator waitBeforeStarting()
