@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerControler player = null;
     [SerializeField] MasterController master = null;
+    public Camera mainCam = null;
     public float gameTime = 60;
 
     public delegate void troubleDone(Vector3 playerPosition);
@@ -36,12 +37,44 @@ public class GameManager : MonoBehaviour
         master.InitTimes(0, gameTime);
     }
 
-    // Example static public
+    //Fonction permettant de replacer le joueur devant son maître
+    private void replacementPlayer()
+    {
+        instance.master.Stop();
+        instance.player.setCanMove(false);
+        instance.player.setReplacement(true);
+        instance.master.Resume();
+        //ajouter la perte de point sur la distance
+    }
+
+    // Actions et animations à effectuer quand le maître repère le joueur
+    static public void MasterChecking()
+    {
+        if (instance != null)
+        {
+            //Si le joueur est derrière le maitre
+            if (instance.master.transform.position.x > instance.player.transform.position.x + 2)//2 étant la distance tolérée derrière le maitre
+            {
+                instance.replacementPlayer();
+            }
+        }
+        else
+        {
+            Debug.LogError("GameManager instance null");
+        }
+    }
+
+    // Actions et animations à effectuer quand la partie est finie
     static public void EndGame()
     {
         if (instance != null)
         {
-            //
+            Vector3 lastCamPos = instance.mainCam.transform.position;
+            instance.mainCam.GetComponent<CameraControler>().enabled = false;
+            instance.mainCam.transform.position = lastCamPos;
+            Vector3 posCamMaster = new Vector3(instance.master.transform.position.x, 0, -10);
+            instance.mainCam.transform.position = Vector3.Lerp(instance.mainCam.transform.position, posCamMaster, 2 * Time.deltaTime);
+            instance.replacementPlayer();
         }
         else
         {

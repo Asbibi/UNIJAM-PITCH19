@@ -6,6 +6,7 @@ public class MasterController : MonoBehaviour
 {
     [SerializeField] Transform startPosition = null;
     [SerializeField] Transform endPosition = null;
+    public ViewBoxScript viewBox;
     private float waitTime = 0;
     private float currentTime = 0;
     private float travelTime = 1;
@@ -16,7 +17,7 @@ public class MasterController : MonoBehaviour
         waitTime = _waitTime;
         travelTime = _travelTime;
         transform.position = startPosition.position;
-        StartCoroutine(waitBeforeStarting());
+        StartCoroutine(waitBeforeStarting(waitTime));
     }
     public void Stop()
     {
@@ -24,7 +25,7 @@ public class MasterController : MonoBehaviour
     }
     public void Resume()
     {
-        StartCoroutine(waitBeforeStarting());
+        StartCoroutine(waitBeforeStarting(3));
     }
 
     private void Update()
@@ -36,17 +37,21 @@ public class MasterController : MonoBehaviour
         transform.position = Vector3.Lerp(startPosition.position, endPosition.position, (currentTime / travelTime));
         if (currentTime >= travelTime)
         {
-            Debug.Log("Game is Over");
+            GameManager.EndGame();
             started = false;
         }
 
-        //Check position joueur par le game manager
-        //
+        //Si le maitre voit le joueur
+        if (viewBox.isSeeingPlayer())
+        {
+            //On demande au game manager de check les états du joueur par rapport au maitre
+            GameManager.MasterChecking();
+        }
     }
 
-    IEnumerator waitBeforeStarting()
+    IEnumerator waitBeforeStarting(float waitTimeSetting)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTimeSetting);
         started = true;
     }
 
