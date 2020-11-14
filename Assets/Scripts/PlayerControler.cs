@@ -132,12 +132,17 @@ public class PlayerControler : MonoBehaviour
             {
                 StartCoroutine(BalconJump(currentInteractableObject.transform.position.y, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
             }
-            else
+            else if (currentInteractableObject.GetComponent<Interaction>() != null)
             {
+                currentInteractableObject.GetComponent<Interaction>().Interact();
             }
         }
     }
 
+    public void FreePlayer()
+    {
+        canMove = true;
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
