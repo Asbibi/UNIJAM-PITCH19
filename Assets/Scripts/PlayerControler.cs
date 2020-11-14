@@ -221,7 +221,7 @@ public class PlayerControler : MonoBehaviour
             dif = transform.position.x - col.bounds.center.x;
             yield return null;
         }
-        while (_currentHeight < col.bounds.size.y)
+        while (_currentHeight < col.bounds.size.y - 0.1)
         {
             animator.SetBool("onLadder", true);
             _currentHeight += ladderSpeed * Time.deltaTime;
@@ -268,6 +268,8 @@ public class PlayerControler : MonoBehaviour
             walledR = false;
         else
             walledL = false;
+
+        transform.position = positionEnd;
 
         animator.SetBool("jumping", false);
         canMove = true;
