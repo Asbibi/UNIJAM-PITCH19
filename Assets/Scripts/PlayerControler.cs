@@ -16,9 +16,9 @@ public class PlayerControler : MonoBehaviour
     private bool walledL = false;
 
     [SerializeField]
-    private GameObject sword1;
+    private GameObject sword1 = null;
     [SerializeField]
-    private GameObject sword2;
+    private GameObject sword2 = null;
     private float playerSpeed = 200;
 
 

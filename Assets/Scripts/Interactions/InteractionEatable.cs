@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractionEatable : Interaction
 {
     [SerializeField]
-    private Sprite eaten;
+    private Sprite eaten = null;
     private SpriteRenderer spriteRenderer;
     public void Start()
     {

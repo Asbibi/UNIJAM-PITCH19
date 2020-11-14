@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] MasterController master = null;
     public float gameTime = 60;
 
-    public delegate void troubleDone();
+    public delegate void troubleDone(Vector3 playerPosition);
     static public event troubleDone onTroubleDone;
 
     private void Awake()
@@ -51,6 +51,18 @@ public class GameManager : MonoBehaviour
 
     static public void NotifyTroubleDone(int actionScore)
     {
-        onTroubleDone();
+        if (instance != null)
+        {
+            onTroubleDone(instance.player.transform.position);
+        }
+        else
+        {
+            Debug.LogError("GameManager instance null");
+        }
+    }
+    static public void ReportPlayer(int sanctionScore)
+    {
+        //...
+        Debug.LogWarning("Reported");
     }
 }

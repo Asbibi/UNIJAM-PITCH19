@@ -7,7 +7,7 @@ public class Destructible : MonoBehaviour
     [SerializeField]
     private int points = 0;
     [SerializeField]
-    private Sprite broken;
+    private Sprite broken = null;
     private SpriteRenderer spriteRenderer;
     public void Start()
     {
