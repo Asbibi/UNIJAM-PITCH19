@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222808126}
   - component: {fileID: 222808127}
+  - component: {fileID: 222808128}
   m_Layer: 0
   m_Name: SwordRightHitBox
   m_TagString: Untagged
@@ -162,7 +163,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.7551222, y: 0}
@@ -178,6 +179,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8705504, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &222808128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222808125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b484048dbe7aa459ec2d05d48c5239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &409265269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1156,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1198,6 +1216,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397050, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40aa5efada35ee8499a9e87079d3f54c, type: 3}
 --- !u!1001 &1286092442
@@ -1211,6 +1234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vase (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
@@ -1267,6 +1295,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397050, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40aa5efada35ee8499a9e87079d3f54c, type: 3}
 --- !u!1001 &1638212489
@@ -1280,6 +1313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
@@ -1335,6 +1373,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397050, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40aa5efada35ee8499a9e87079d3f54c, type: 3}

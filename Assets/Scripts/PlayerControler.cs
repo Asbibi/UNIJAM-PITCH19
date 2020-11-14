@@ -148,6 +148,7 @@ public class PlayerControler : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
+        Debug.Log("Exit");
         if (col.gameObject == currentInteractableObject)
             currentInteractableObject = null;
         else if (col.gameObject.tag == "Wall")
