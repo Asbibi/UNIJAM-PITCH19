@@ -34,8 +34,10 @@ public class PlayerControler : MonoBehaviour
     private int attackFrames = 17;
     private int currentAttackFrames;
 
-    [SerializeField] Transform replacePosition = null;
+    //ajout Paul1
+    public Transform replacePosition = null;
     private bool replacement = false;
+    private float positionYBase;
 
 
     // Start is called before the first frame update
@@ -47,6 +49,8 @@ public class PlayerControler : MonoBehaviour
         facingDirection = 1;
         canMove = true;
         attacking = false;
+        //ajout Paul1
+        positionYBase = transform.position.y;
     }
 
     // Update is called once per frame
@@ -217,7 +221,7 @@ public class PlayerControler : MonoBehaviour
             dif = transform.position.x - col.bounds.center.x;
             yield return null;
         }
-        while (_currentHeight < col.bounds.size.y)
+        while (_currentHeight < col.bounds.size.y - 0.1)
         {
             animator.SetBool("onLadder", true);
             _currentHeight += ladderSpeed * Time.deltaTime;
@@ -265,6 +269,8 @@ public class PlayerControler : MonoBehaviour
         else
             walledL = false;
 
+        transform.position = positionEnd;
+
         animator.SetBool("jumping", false);
         canMove = true;
     }
@@ -282,6 +288,10 @@ public class PlayerControler : MonoBehaviour
     }
     public void replacementAnim()
     {
+        if (transform.position.y != positionYBase)
+        {
+            transform.position = new Vector3(transform.position.x, positionYBase, transform.position.z);
+        }
         facingDirection = 1;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         StartCoroutine(waitBeforeDeplacement());
