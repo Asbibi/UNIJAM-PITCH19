@@ -145,13 +145,16 @@ public class PlayerControler : MonoBehaviour
         float _timer = 0;
         while (_timer < jumpDuration)
         {
-            transform.position = Vector3.Lerp(positionStart, positionEnd, _timer / jumpDuration);
+            float x = _timer / jumpDuration;
+            transform.position = Vector3.Lerp(positionStart, positionEnd, x);
 
+            /*
             if (_timer < jumpDuration / 2)
                 transform.position += Vector3.up * (jumpHeight * _timer / jumpDuration);
             else
                 transform.position += Vector3.up * (jumpHeight * (1 - _timer / jumpDuration));
-
+            */
+            transform.position += Vector3.up * (jumpHeight *(-4*x*x + 4*x));
 
             _timer += Time.deltaTime;
             yield return null;
