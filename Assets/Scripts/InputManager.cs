@@ -14,22 +14,19 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerControler.setInputSpeed(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
-        if (Input.GetButtonDown("Jump"))
+        PlayerControler.SetInputSpeed(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
+        if (Input.GetButtonDown("Interact"))
         {
-            PlayerControler.Jump();
+            PlayerControler.Interact();
         }
-        if (Input.GetButtonUp("Jump"))
+/*        if (Input.GetButtonUp("Jump"))
         {
-            //PlayerControler.StopJump();
         }
         if (Input.GetButtonDown("Run"))
         {
-            //PlayerControler.Run();
         }
         if (Input.GetButtonUp("Run"))
         {
-            //PlayerControler.StopRun();
         }
         if (Input.GetButtonDown("Interact"))
         {
@@ -39,7 +36,6 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetButtonDown("Menu"))
         {
-            //    SceneManager.LoadScene(0);
-        }
+        }*/
     }
 }

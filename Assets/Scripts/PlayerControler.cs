@@ -6,20 +6,18 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody2D playerRB;
     private BoxCollider2D playerBC;
-    private Vector2 InputSpeed;
 
-    [SerializeField]
-    private float jumpHeight;
+
+    private Vector2 InputSpeed;
+    private int facingDirection;
+    private bool canMove;
+
+
+
     [SerializeField]
     private float playerSpeed;
     [SerializeField]
-    private float gravity;
-    [SerializeField]
-    private float fallGravity;
-    [SerializeField]
-    private float extraGroundDetectionHeight;
-    [SerializeField]
-    private LayerMask platformsLayerM;
+    private LayerMask ladderLayerM;
 
 
     // Start is called before the first frame update
@@ -27,44 +25,39 @@ public class PlayerControler : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerBC = GetComponent<BoxCollider2D>();
+        facingDirection = 1;
+        canMove = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Horizontal Movement
-        playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
-
-        //Gravity
-        if (!isGrounded()) {
-            playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y + gravity * Time.deltaTime);
-            if (playerRB.velocity.y < 0)
-            {
-                playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y + fallGravity * Time.deltaTime);
-            }
-            Debug.Log("Not Grounded");
-        }
-        else {
-            Debug.Log("Grounded)");
-        }
+        MoveHorizontal();
     }
 
-    public void Jump()
+    private void MoveHorizontal()
     {
-        if (isGrounded())
+        if (canMove)
         {
-            playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
+            playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
+            if (InputSpeed.x > 0)
+            {
+                facingDirection = 1;
+            }
+            else if (InputSpeed.x < 0)
+            {
+                facingDirection = -1;
+            }
         }
     }
 
-    public void setInputSpeed(Vector2 InputSpeed)
+    public void Interact()
+    {
+    }
+
+    public void SetInputSpeed(Vector2 InputSpeed)
     {
         this.InputSpeed = InputSpeed;
     }
 
-    private bool isGrounded()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(playerBC.bounds.center, playerBC.bounds.size , 0, Vector2.down, extraGroundDetectionHeight, platformsLayerM);
-        return raycastHit.collider != null;
-    }
 }
