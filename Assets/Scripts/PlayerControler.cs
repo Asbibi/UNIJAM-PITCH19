@@ -85,7 +85,6 @@ public class PlayerControler : MonoBehaviour
         {
             canMove = false;
 
-
             if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
             {
                 StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
@@ -99,7 +98,7 @@ public class PlayerControler : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         string colTag = col.gameObject.tag;
-        Debug.Log(colTag);
+        Debug.Log(colTag + " " + col.gameObject.name);
         if (colTag == "Interactable")
         {
             currentInteractableObject = col.gameObject;
@@ -114,6 +113,7 @@ public class PlayerControler : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
+        Debug.Log("exit " + col.gameObject.tag);
         if (col.gameObject == currentInteractableObject)
             currentInteractableObject = null;
         else if (col.gameObject.tag == "Wall")
@@ -133,7 +133,7 @@ public class PlayerControler : MonoBehaviour
             upInt = 1;
         while (_currentHeight < height)
         {
-            _currentHeight += ladderSpeed * Time.deltaTime; //ladder speed;
+            _currentHeight += ladderSpeed * Time.deltaTime;
             transform.position += Vector3.up * ladderSpeed * Time.deltaTime * upInt;
             yield return null;
         }
@@ -147,13 +147,6 @@ public class PlayerControler : MonoBehaviour
         {
             float x = _timer / jumpDuration;
             transform.position = Vector3.Lerp(positionStart, positionEnd, x);
-
-            /*
-            if (_timer < jumpDuration / 2)
-                transform.position += Vector3.up * (jumpHeight * _timer / jumpDuration);
-            else
-                transform.position += Vector3.up * (jumpHeight * (1 - _timer / jumpDuration));
-            */
             transform.position += Vector3.up * (jumpHeight *(-4*x*x + 4*x));
 
             _timer += Time.deltaTime;

@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222808126}
   - component: {fileID: 222808127}
+  - component: {fileID: 222808128}
   m_Layer: 0
   m_Name: SwordRightHitBox
   m_TagString: Untagged
@@ -178,6 +179,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8705504, y: 2}
   m_EdgeRadius: 0
+--- !u!50 &222808128
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222808125}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &409265269
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +484,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.97, y: -1.11, z: 0}
   m_LocalScale: {x: 3.1307323, y: 41.478104, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1967862070}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1265,9 +1288,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967862067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.88, y: 2.9, z: -2.5691848}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.61008096, y: 0.09667752, z: -2.5691848}
+  m_LocalScale: {x: 0.3194141, y: 0.024109107, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 490316980}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
