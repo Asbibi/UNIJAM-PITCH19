@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 200
+  ladderSpeed: 3
   currentInteractableObject: {fileID: 0}
 --- !u!50 &657289823
 Rigidbody2D:

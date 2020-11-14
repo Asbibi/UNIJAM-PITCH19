@@ -52,6 +52,8 @@ public class PlayerControler : MonoBehaviour
                 facingDirection = -1;
             }
         }
+        else
+            playerRB.velocity = Vector2.zero;
     }
     public void SetInputSpeed(Vector2 InputSpeed)
     {
@@ -62,11 +64,16 @@ public class PlayerControler : MonoBehaviour
     #region Interactions Base
     public void Interact()
     {
-        if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+        if (currentInteractableObject != null && canMove)
         {
-            StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
-        }
+            canMove = false;
 
+
+            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            {
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+            }
+        }
     }
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -92,6 +99,8 @@ public class PlayerControler : MonoBehaviour
             transform.position += Vector3.up * ladderSpeed * Time.deltaTime * upInt;
             yield return null;
         }
+
+        canMove = true;
     }
     #endregion
 }
