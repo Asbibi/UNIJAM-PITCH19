@@ -49,11 +49,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    static public void NotifyTroubleDone()
+    static public void NotifyTroubleDone(int actionScore)
     {
-        if (onTroubleDone != null)
-        {
-            onTroubleDone();
-        }
+        onTroubleDone();
     }
 }

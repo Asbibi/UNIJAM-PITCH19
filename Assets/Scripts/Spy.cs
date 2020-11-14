@@ -10,8 +10,8 @@ public class Spy : MonoBehaviour
         GameManager.onTroubleDone += OnTroubleNotified;
     }
 
-    void OnTroubleNotified()
+    virtual protected void OnTroubleNotified()
     {
-        Debug.LogWarning("Player seen causing troubles");
+        Debug.LogWarning("Player has caused troubles");
     }
 }
