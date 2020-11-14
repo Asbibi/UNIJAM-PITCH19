@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionEatable : Interaction
+public class InteractionChangeSprite : Interaction
 {
     [SerializeField]
     private Sprite eaten;
@@ -26,6 +26,10 @@ public class InteractionEatable : Interaction
             int NbPoints = Random.Range(0, pointsGiven);
 
             Debug.Log("adding " + NbPoints + " points");
+
+            interactible = false;
+
+            GameManager.NotifyTroubleDone(NbPoints);
         }
         
     }
