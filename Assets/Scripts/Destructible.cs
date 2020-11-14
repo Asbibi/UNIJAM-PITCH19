@@ -14,7 +14,7 @@ public class Destructible : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("dropped " + numberOfCoins + " coins");
+        Debug.Log("dropping " + numberOfCoins + " coins");
         gameObject.SetActive(false);
     }
 

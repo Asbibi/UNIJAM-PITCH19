@@ -113,7 +113,6 @@ public class PlayerControler : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter2D(Collider2D col)
 
     public void SwordAttack()
     {
@@ -131,7 +130,7 @@ public class PlayerControler : MonoBehaviour
         attacking = false;
     }
 
-    public void SetInputSpeed(Vector2 InputSpeed)
+    void OnTriggerEnter2D(Collider2D col)
     {
         string colTag = col.gameObject.tag;
         Debug.Log(colTag);
