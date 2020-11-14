@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            instance.master.transform.x - instance.player.transform.x
+            //
         }
         else
         {

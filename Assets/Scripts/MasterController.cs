@@ -41,7 +41,7 @@ public class MasterController : MonoBehaviour
         }
 
         //Check position joueur par le game manager
-        GameManager.
+        //
     }
 
     IEnumerator waitBeforeStarting()
