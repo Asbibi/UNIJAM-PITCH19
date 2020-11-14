@@ -26,6 +26,8 @@ public abstract class Interaction : MonoBehaviour
 
     protected IEnumerator WaitForAnimation()
     {
+        playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
+
         playerControler.GetComponent<PlayerControler>().LockPlayer();
 
         //Print the time of when the function is first called.
@@ -36,7 +38,6 @@ public abstract class Interaction : MonoBehaviour
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Interaction at timestamp : " + Time.time);
-        playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
 
         playerControler.GetComponent<PlayerControler>().FreePlayer();
     }
