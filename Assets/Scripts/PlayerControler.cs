@@ -33,21 +33,27 @@ public class PlayerControler : MonoBehaviour
     void FixedUpdate()
     {
         MoveHorizontal();
+        TurnAround();
     }
 
+    private void TurnAround()
+    {
+        if (InputSpeed.x > 0 && facingDirection == -1)
+        {
+            facingDirection = 1;
+            transform.rotation = Quaternion.Euler(0,0,0);
+        }
+        else if (InputSpeed.x < 0)
+        {
+            facingDirection = -1;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
     private void MoveHorizontal()
     {
         if (canMove)
         {
             playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
-            if (InputSpeed.x > 0)
-            {
-                facingDirection = 1;
-            }
-            else if (InputSpeed.x < 0)
-            {
-                facingDirection = -1;
-            }
         }
     }
 
