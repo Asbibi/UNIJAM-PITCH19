@@ -11,6 +11,7 @@ public class SpyMageManager : MonoBehaviour
     [SerializeField] float distanceValidSpawn = 3;
 
     bool spawned = false;
+    bool waiting = false;
 
     [SerializeField] Transform[] mageSpawnPoints = new Transform[0];
 
@@ -18,11 +19,22 @@ public class SpyMageManager : MonoBehaviour
     void Start()
     {
         mage.gameObject.SetActive(false);
-        StartCoroutine(waitToSpawn());
-
     }
 
-  
+
+    private void Update()
+    {
+        if (!waiting)
+        {
+            waiting = true;
+            if (spawned)
+            {
+                StartCoroutine(waitToDespawn());
+            }
+            else
+                StartCoroutine(waitToSpawn());
+        }
+    }
 
 
     void spawnMage()
@@ -30,7 +42,7 @@ public class SpyMageManager : MonoBehaviour
         int idSpawnPoint = Random.Range(0, mageSpawnPoints.Length);
         int idSup = mageSpawnPoints.Length;
         int idInf = 0;
-        while (idSup > idInf && Mathf.Abs(mageSpawnPoints[idSpawnPoint].position.x - player.position.x) > distanceValidSpawn)
+        while (idSup > (idInf+1) && Mathf.Abs(mageSpawnPoints[idSpawnPoint].position.x - player.position.x) > distanceValidSpawn)
         {
             if (mageSpawnPoints[idSpawnPoint].position.x - player.position.x > 0)
                 idSup = idSpawnPoint;
@@ -47,5 +59,13 @@ public class SpyMageManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delaySpawn);
         spawnMage();
+        waiting = false;
+    }
+    IEnumerator waitToDespawn()
+    {
+        yield return new WaitForSeconds(durationSpawn);
+        mage.gameObject.SetActive(false);
+        spawned = false;
+        waiting = false;
     }
 }
