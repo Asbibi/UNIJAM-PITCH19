@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6261266541257397049}
   - component: {fileID: 6261266541257397050}
   - component: {fileID: 6261266541257397051}
-  - component: {fileID: 7904165750450676124}
   - component: {fileID: 6261266541257397048}
   - component: {fileID: 4833265872494034097}
   m_Layer: 8
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6261266541257397044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.671, y: -3.166, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f24dee6cf0fd40469c66863eeb3a80c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bfb5db915fb37b4f89d75f4f20e5577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +101,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 20.48, y: 20.48}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -111,21 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.14275512}
   m_EdgeRadius: 0
---- !u!114 &7904165750450676124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6261266541257397044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93037fb58923003499be8cc8b019ce87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationTime: 1
-  pointsGiven: 10
-  eaten: {fileID: 21300000, guid: fcfd41c72fa59aa44b7444b2cfcd75c6, type: 3}
 --- !u!114 &6261266541257397048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c690fa8339af964d81d74bf33dfe7be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfCoins: 1
-  coinPF: {fileID: 7946856185743120129, guid: f1245fa9609acbf47aa092661ed33b7c, type: 3}
+  points: 0
+  broken: {fileID: 21300000, guid: fcfd41c72fa59aa44b7444b2cfcd75c6, type: 3}
 --- !u!82 &4833265872494034097
 AudioSource:
   m_ObjectHideFlags: 0

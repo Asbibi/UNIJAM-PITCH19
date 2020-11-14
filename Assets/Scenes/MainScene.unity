@@ -251,7 +251,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.38593763, y: -0.008884907}
@@ -1769,6 +1769,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4833265872494034097, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_Name
@@ -2299,7 +2304,7 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
-  - name: 
+  - name: epee
     clip: {fileID: 8300000, guid: fe883696ea371ed4b8c04eaed64c4644, type: 3}
     volume: 0
     pitch: 0
@@ -2326,6 +2331,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4833265872494034097, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_Name
@@ -2334,6 +2344,11 @@ PrefabInstance:
     - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397048, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
@@ -2394,7 +2409,17 @@ PrefabInstance:
     - target: {fileID: 6261266541257397050, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904165750450676124, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: animationTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904165750450676124, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: pointsGiven
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40aa5efada35ee8499a9e87079d3f54c, type: 3}

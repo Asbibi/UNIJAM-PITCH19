@@ -19,9 +19,9 @@ public class InteractionChangeSprite : Interaction
         {
             Debug.Log("Miam miam");
 
-            StartCoroutine(WaitForAnimation());
-
             spriteRenderer.sprite = eaten;
+
+            StartCoroutine(WaitForAnimation());
 
             int NbPoints = Random.Range(0, pointsGiven);
 
