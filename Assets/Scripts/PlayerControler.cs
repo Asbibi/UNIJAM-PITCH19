@@ -32,6 +32,9 @@ public class PlayerControler : MonoBehaviour
     private int attackFrames = 17;
     private int currentAttackFrames;
 
+    [SerializeField] Transform replacePosition = null;
+    private bool replacement = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,11 @@ public class PlayerControler : MonoBehaviour
         else
             playerRB.velocity = Vector2.zero;
         AttackTimer();
+
+        if(replacement)
+        {
+            replacementAnim();
+        }
     }
 
 
@@ -222,4 +230,29 @@ public class PlayerControler : MonoBehaviour
         canMove = true;
     }
     #endregion
+
+    public void setCanMove(bool canMoveSetting)
+    {
+        canMove = canMoveSetting;
+    }
+
+    public void setReplacement(bool replacementSetting)
+    {
+        replacement = replacementSetting;
+    }
+    public void replacementAnim()
+    {
+        facingDirection = 1;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        StartCoroutine(waitBeforeDeplacement());
+    }
+
+    IEnumerator waitBeforeDeplacement()
+    {
+        yield return new WaitForSeconds(1);
+        transform.position = Vector3.MoveTowards(transform.position, replacePosition.position, 10 * Time.deltaTime);
+        setReplacement(false);
+        yield return new WaitForSeconds(1);
+        setCanMove(true);
+    }
 }

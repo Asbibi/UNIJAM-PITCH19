@@ -6,6 +6,7 @@ public class MasterController : MonoBehaviour
 {
     [SerializeField] Transform startPosition = null;
     [SerializeField] Transform endPosition = null;
+    public ViewBoxScript viewBox;
     private float waitTime = 0;
     private float currentTime = 0;
     private float travelTime = 1;
@@ -40,8 +41,12 @@ public class MasterController : MonoBehaviour
             started = false;
         }
 
-        //Check position joueur par le game manager
-        //
+        //Si le maitre voit le joueur
+        if(viewBox.isSeeingPlayer())
+        {
+            //On demande au game manager de check les états du joueur par rapport au maitre
+            GameManager.MasterChecking();
+        }
     }
 
     IEnumerator waitBeforeStarting()
