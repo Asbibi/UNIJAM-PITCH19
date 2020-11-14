@@ -60,4 +60,9 @@ public class PlayerControler : MonoBehaviour
         this.InputSpeed = InputSpeed;
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.tag);
+    }
+
 }

@@ -132,9 +132,10 @@ GameObject:
   - component: {fileID: 490316980}
   - component: {fileID: 490316979}
   - component: {fileID: 490316978}
+  - component: {fileID: 490316981}
   m_Layer: 9
-  m_Name: Interactible
-  m_TagString: Untagged
+  m_Name: Ladder
+  m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.000000029802322}
@@ -229,6 +230,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &490316981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490316977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825d8fede17ec0340ad8c23424ca101b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,14 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa60a81338d3d7469c7b067737ddda0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 5
   playerSpeed: 200
-  gravity: -9.8
-  fallGravity: -14.7
-  extraGroundDetectionHeight: 0.02
-  platformsLayerM:
-    serializedVersion: 2
-    m_Bits: 256
   ladderLayerM:
     serializedVersion: 2
     m_Bits: 512
