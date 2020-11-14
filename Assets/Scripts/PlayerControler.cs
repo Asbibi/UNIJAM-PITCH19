@@ -16,10 +16,15 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     private float playerSpeed;
+
+    [Header("Interactions")]
+    private GameObject currentInteractableObject = null;
     [SerializeField]
     private float ladderSpeed = 2f;
     [SerializeField]
-    private GameObject currentInteractableObject = null;
+    private float jumpHeight = 1f;
+    [SerializeField]
+    private float jumpDuration = 1f;
 
 
     // Start is called before the first frame update
@@ -34,8 +39,13 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        MoveHorizontal();
-        TurnAround();
+        if (canMove)
+        {
+            MoveHorizontal();
+            TurnAround();
+        }
+        else
+            playerRB.velocity = Vector2.zero;
     }
 
     #region Movement Horizontal
@@ -54,12 +64,7 @@ public class PlayerControler : MonoBehaviour
     }
     private void MoveHorizontal()
     {
-        if (canMove)
-        {
-            playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
-        }
-        else
-            playerRB.velocity = Vector2.zero;
+        playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
     }
     public void SetInputSpeed(Vector2 InputSpeed)
     {
@@ -78,6 +83,10 @@ public class PlayerControler : MonoBehaviour
             if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
             {
                 StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+            }
+            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
+            {
+                StartCoroutine(BalconJump(currentInteractableObject.transform.position, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
             }
         }
     }
@@ -106,6 +115,23 @@ public class PlayerControler : MonoBehaviour
             yield return null;
         }
 
+        canMove = true;
+    }
+    IEnumerator BalconJump(Vector3 positionStart, Vector3 positionEnd)
+    {
+        float _timer = 0;
+        while (_timer < jumpDuration)
+        {
+            transform.position = Vector3.Lerp(positionStart, positionEnd, _timer / jumpDuration);
+            /*
+            if (_timer < jumpDuration / 2)
+                transform.position += Vector3.up * (jumpHeight * _timer/jumpDuration * 2) ;
+            else
+                transform.position += Vector3.up * (jumpHeight * (1 - (_timer / jumpDuration * 2)));
+            */
+            _timer += Time.deltaTime;
+            yield return null;
+        }
         canMove = true;
     }
     #endregion
