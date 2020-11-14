@@ -17,7 +17,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private float playerSpeed;
     [SerializeField]
-    private LayerMask ladderLayerM;
+    private float ladderSpeed = 2f;
+    [SerializeField]
+    private GameObject currentInteractableObject = null;
 
 
     // Start is called before the first frame update
@@ -35,6 +37,7 @@ public class PlayerControler : MonoBehaviour
         MoveHorizontal();
     }
 
+    #region Movement Horizontal
     private void MoveHorizontal()
     {
         if (canMove)
@@ -50,19 +53,45 @@ public class PlayerControler : MonoBehaviour
             }
         }
     }
-
-    public void Interact()
-    {
-    }
-
     public void SetInputSpeed(Vector2 InputSpeed)
     {
         this.InputSpeed = InputSpeed;
     }
+    #endregion
 
+    #region Interactions Base
+    public void Interact()
+    {
+        if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+        {
+            StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+        }
+
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.tag);
+        string colTag = col.gameObject.tag;
+        Debug.Log(colTag);
+        if (colTag == "Interactable")
+        {
+            currentInteractableObject = col.gameObject;
+        }
     }
+    #endregion
 
+    #region Interactions Other
+    IEnumerator Ladder(bool up, float height)
+    {
+        float _currentHeight = 0;
+        int upInt = -1;
+        if (up)
+            upInt = 1;
+        while (_currentHeight < height)
+        {
+            _currentHeight += ladderSpeed * Time.deltaTime; //ladder speed;
+            transform.position += Vector3.up * ladderSpeed * Time.deltaTime * upInt;
+            yield return null;
+        }
+    }
+    #endregion
 }
