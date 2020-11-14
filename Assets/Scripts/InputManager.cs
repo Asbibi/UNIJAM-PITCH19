@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             PlayerControler.SwordAttack();
-            FindObjectOfType<AudioManager>().Play("epee");
+            
         }
         if (Input.GetButtonDown("Menu"))
         {

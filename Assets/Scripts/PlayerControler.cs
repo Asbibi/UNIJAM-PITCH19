@@ -107,6 +107,7 @@ public class PlayerControler : MonoBehaviour
             sword.SetActive(true);
             attacking = true;
             animator.SetBool("isAttacking", true);
+            FindObjectOfType<AudioManager>().Play("epee");
         }
     }
 
