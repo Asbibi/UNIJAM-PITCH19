@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 222808125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 657289826}
   m_RootOrder: 0
@@ -871,13 +871,13 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 10, y: 10}
-    newSize: {x: 5, y: 5}
+    newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.124183, y: 3.15}
+  m_Size: {x: 2.68, y: 6.39}
   m_EdgeRadius: 0
 --- !u!212 &657289825
 SpriteRenderer:
@@ -922,8 +922,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 5, y: 5}
+  m_DrawMode: 0
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -938,7 +938,7 @@ Transform:
   m_GameObject: {fileID: 657289821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.38, y: -3.06, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.7}
   m_Children:
   - {fileID: 222808126}
   - {fileID: 1029859662}
@@ -1668,7 +1668,7 @@ Transform:
   m_GameObject: {fileID: 1029859661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 657289826}
   m_RootOrder: 1
@@ -1777,6 +1777,11 @@ PrefabInstance:
     - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397048, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
@@ -2105,6 +2110,11 @@ PrefabInstance:
     - target: {fileID: 6261266541257397044, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261266541257397048, guid: 40aa5efada35ee8499a9e87079d3f54c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
