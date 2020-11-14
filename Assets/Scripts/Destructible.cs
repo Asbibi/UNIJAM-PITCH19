@@ -18,6 +18,7 @@ public class Destructible : MonoBehaviour
         int NbCoins = Random.Range(0,maxNumberOfCoins);
         Debug.Log("dropping " + NbCoins + " coins");
         gameObject.SetActive(false);
+        FindObjectOfType<AudioManager>().Play("vase");
     }
 
 }
