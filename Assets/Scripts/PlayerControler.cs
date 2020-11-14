@@ -11,11 +11,12 @@ public class PlayerControler : MonoBehaviour
     private Vector2 InputSpeed;
     private int facingDirection;
     private bool canMove;
+    private bool attacking;
     private bool walledR = false;
     private bool walledL = false;
 
-
-
+    [SerializeField]
+    private GameObject sword;
     [SerializeField]
     private float playerSpeed;
 
@@ -27,7 +28,9 @@ public class PlayerControler : MonoBehaviour
     private float jumpHeight = 1f;
     [SerializeField]
     private float jumpDuration = 1f;
-
+    [SerializeField]
+    private int attackFrames;
+    private int currentAttackFrames;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,7 @@ public class PlayerControler : MonoBehaviour
         playerBC = GetComponent<BoxCollider2D>();
         facingDirection = 1;
         canMove = true;
+        attacking = false;
     }
 
     // Update is called once per frame
@@ -48,6 +52,19 @@ public class PlayerControler : MonoBehaviour
         }
         else
             playerRB.velocity = Vector2.zero;
+        AttackTimer();
+    }
+
+    private void AttackTimer()
+    {
+        if (attacking)
+        {
+            currentAttackFrames++;
+            if (currentAttackFrames > attackFrames)
+            {
+                StopSwordAttack();
+            }
+        }
     }
 
     #region Movement Horizontal
@@ -95,6 +112,23 @@ public class PlayerControler : MonoBehaviour
             }
         }
     }
+
+    public void SwordAttack()
+    {
+        if (!attacking)
+        {
+            currentAttackFrames = 0;
+            sword.SetActive(true);
+            attacking = true;
+        }
+    }
+
+    public void StopSwordAttack()
+    {
+        sword.SetActive(false);
+        attacking = false;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         string colTag = col.gameObject.tag;

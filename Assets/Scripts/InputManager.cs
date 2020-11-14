@@ -30,12 +30,13 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetButtonDown("Interact"))
         {
-        }
-        if (Input.GetButtonDown("Hit"))
+        }*/
+        if (Input.GetButtonDown("Fire1"))
         {
+            PlayerControler.SwordAttack();
         }
         if (Input.GetButtonDown("Menu"))
         {
-        }*/
+        }
     }
 }
