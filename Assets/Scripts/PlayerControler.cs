@@ -16,9 +16,9 @@ public class PlayerControler : MonoBehaviour
     private bool walledL = false;
 
     [SerializeField]
-    private GameObject sword;
+    private GameObject sword = null;
     [SerializeField]
-    private float playerSpeed;
+    private float playerSpeed = 200;
 
     [Header("Interactions")]
     private GameObject currentInteractableObject = null;
@@ -29,7 +29,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private float jumpDuration = 1f;
     [SerializeField]
-    private int attackFrames;
+    private int attackFrames = 17;
     private int currentAttackFrames;
 
     // Start is called before the first frame update
