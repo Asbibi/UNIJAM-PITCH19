@@ -121,4 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c690fa8339af964d81d74bf33dfe7be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCoins: 1
+  maxNumberOfCoins: 1
+  coinPF: {fileID: 7946856185743120129, guid: f1245fa9609acbf47aa092661ed33b7c, type: 3}
