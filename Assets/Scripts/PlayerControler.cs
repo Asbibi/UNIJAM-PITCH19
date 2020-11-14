@@ -171,11 +171,11 @@ public class PlayerControler : MonoBehaviour
         Debug.Log(colTag + " " + col.gameObject.name);
         if (colTag == "Interactable")
         {
-            currentInteractableObject = col.gameObject;
+            currentInteractableObject = col.gameObject;/*
             if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)// && curre.interactible == true)
             {
                 currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
-            }
+            }*/
         }
         else if (colTag == "Wall")
         {
@@ -187,13 +187,14 @@ public class PlayerControler : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        Debug.Log("exit " + col.gameObject.tag);
+        Debug.LogWarning("exit " + col.gameObject.tag);
         if (col.gameObject == currentInteractableObject)
         {
+            /*
             if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
             {
                 currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-            }
+            }*/
             currentInteractableObject = null;
         }
         else if (col.gameObject.tag == "Wall")
