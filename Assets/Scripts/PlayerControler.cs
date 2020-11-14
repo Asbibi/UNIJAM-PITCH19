@@ -16,11 +16,9 @@ public class PlayerControler : MonoBehaviour
     private bool walledL = false;
 
     [SerializeField]
-    private GameObject sword1;
+    private GameObject sword = null;
     [SerializeField]
-    private GameObject sword2;
     private float playerSpeed = 200;
-
 
     [Header("Interactions")]
     private GameObject currentInteractableObject = null;
@@ -94,9 +92,6 @@ public class PlayerControler : MonoBehaviour
         if (attacking)
         {
             currentAttackFrames++;
-            if (currentAttackFrames > attackFrames *3/4){
-                sword2.SetActive(true);
-            }
             if (currentAttackFrames > attackFrames)
             {
                 StopSwordAttack();
@@ -109,17 +104,16 @@ public class PlayerControler : MonoBehaviour
         if (!attacking)
         {
             currentAttackFrames = 0;
-            sword1.SetActive(true);
+            sword.SetActive(true);
             attacking = true;
             animator.SetBool("isAttacking", true);
+            FindObjectOfType<AudioManager>().Play("epee");
         }
     }
 
-
     public void StopSwordAttack()
     {
-        sword1.SetActive(false);
-        sword2.SetActive(false);
+        sword.SetActive(false);
         attacking = false;
         animator.SetBool("isAttacking", false);
     }
@@ -130,30 +124,21 @@ public class PlayerControler : MonoBehaviour
     {
         if (currentInteractableObject != null && canMove)
         {
+            canMove = false;
             if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
             {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<Collider2D>()));
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
             }
             else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
             {
                 StartCoroutine(BalconJump(currentInteractableObject.transform.position.y, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
             }
-            else if (currentInteractableObject.GetComponent<Interaction>() != null)
+            else
             {
-                currentInteractableObject.GetComponent<Interaction>().Interact();
             }
         }
     }
 
-    public void FreePlayer()
-    {
-        canMove = true;
-    }
-    
-    public void LockPlayer()
-    {
-        canMove = false;
-    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -162,10 +147,6 @@ public class PlayerControler : MonoBehaviour
         if (colTag == "Interactable")
         {
             currentInteractableObject = col.gameObject;
-            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)// && curre.interactible == true)
-            {
-                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
-            }
         }
         else if (colTag == "Wall")
         {
@@ -179,13 +160,7 @@ public class PlayerControler : MonoBehaviour
     {
         Debug.Log("exit " + col.gameObject.tag);
         if (col.gameObject == currentInteractableObject)
-        {
-            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
-            {
-                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-            }
             currentInteractableObject = null;
-        }
         else if (col.gameObject.tag == "Wall")
         {
             walledR = false;
@@ -195,36 +170,27 @@ public class PlayerControler : MonoBehaviour
     #endregion
 
     #region Interactions Other
-    IEnumerator Ladder(bool up, Collider2D col)
+    IEnumerator Ladder(bool up, float height)
     {
-        canMove = false;
         float _currentHeight = 0;
-        float dif = transform.position.x - col.bounds.center.x;
-        while (Mathf.Abs(dif) > 0.1)
+        int upInt = -1;
+        if (up)
+            upInt = 1;
+        while (_currentHeight < height)
         {
-            transform.position = new Vector2(transform.position.x - (dif > 0 ? 0.02f : -0.02f)*playerSpeed*Time.deltaTime, transform.position.y);
-            dif = transform.position.x - col.bounds.center.x;
-            yield return null;
-        }
-        while (_currentHeight < col.bounds.size.y)
-        {
-            animator.SetBool("onLadder", true);
             _currentHeight += ladderSpeed * Time.deltaTime;
-            transform.position += Vector3.up * ladderSpeed * Time.deltaTime * (up ? 1 : -1);
+            transform.position += Vector3.up * ladderSpeed * Time.deltaTime * upInt;
             yield return null;
         }
-        animator.SetBool("onLadder", false);
+
         canMove = true;
     }
     IEnumerator BalconJump(float yStart, Vector3 positionEnd)
     {
-        canMove = false;
-
         // Initialisation
         float _timer = 0;
         Vector3 _positionStart = transform.position;
         positionEnd.y += _positionStart.y - yStart;
-        animator.SetBool("jumping", true);
 
         //Rotation
         if (positionEnd.x < _positionStart.x)  // on va vers la gauche
@@ -254,7 +220,6 @@ public class PlayerControler : MonoBehaviour
         else
             walledL = false;
 
-        animator.SetBool("jumping", false);
         canMove = true;
     }
     #endregion

@@ -19,24 +19,29 @@ public class InputManager : MonoBehaviour
         {
             PlayerControler.Interact();
         }
-/*        if (Input.GetButtonUp("Jump"))
-        {
-        }
-        if (Input.GetButtonDown("Run"))
-        {
-        }
-        if (Input.GetButtonUp("Run"))
-        {
-        }
-        if (Input.GetButtonDown("Interact"))
-        {
-        }*/
+    /*        if (Input.GetButtonUp("Jump"))
+            {
+            }
+            if (Input.GetButtonDown("Run"))
+            {
+            }
+            if (Input.GetButtonUp("Run"))
+            {
+            }
+            if (Input.GetButtonDown("Interact"))
+            {
+            }*/
         if (Input.GetButtonDown("Fire1"))
         {
             PlayerControler.SwordAttack();
+            
         }
         if (Input.GetButtonDown("Menu"))
         {
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            GameManager.NotifyTroubleDone(10);
         }
     }
 }

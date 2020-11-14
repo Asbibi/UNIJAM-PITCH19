@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class Interaction : MonoBehaviour
 {
     [SerializeField]
-    private int animationTime;
+    private int animationTime = 1;
     [SerializeField]
-    protected int pointsGiven;
+    protected int pointsGiven = 10;
 
     private PlayerControler playerControler;
     protected bool interactible = true;
