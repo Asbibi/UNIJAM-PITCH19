@@ -48,6 +48,7 @@ MonoBehaviour:
   sanctionScore: 1
   visionDistance: 3
   visionPivot: {fileID: 6901502344052598805}
+  uTurnDelay: 2
 --- !u!1 &6901502343476314814
 GameObject:
   m_ObjectHideFlags: 0

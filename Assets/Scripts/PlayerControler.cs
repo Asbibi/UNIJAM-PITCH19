@@ -172,10 +172,14 @@ public class PlayerControler : MonoBehaviour
         if (colTag == "Interactable")
         {
             currentInteractableObject = col.gameObject;
-            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)// && curre.interactible == true)
-            {
-                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
-            }
+            /*           if (currentInteractableObject.transform.Find("Outline") != null)
+                       {
+                           currentInteractableObject = col.gameObject;
+                           if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)// && curre.interactible == true)
+                           {
+                               currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
+                           }
+                       }*/
         }
         else if (colTag == "Wall")
         {
@@ -190,10 +194,13 @@ public class PlayerControler : MonoBehaviour
         Debug.Log("exit " + col.gameObject.tag);
         if (col.gameObject == currentInteractableObject)
         {
-            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
+           /* if (currentInteractableObject.transform.Find("Outline") != null)
             {
-                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-            }
+                if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
+                {
+                    currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }*/
             currentInteractableObject = null;
         }
         else if (col.gameObject.tag == "Wall")
@@ -210,7 +217,7 @@ public class PlayerControler : MonoBehaviour
         canMove = false;
         float _currentHeight = 0;
         float dif = transform.position.x - col.bounds.center.x;
-        while (Mathf.Abs(dif) > 0.1)
+        while (Mathf.Abs(dif) > 0.1f)
         {
             transform.position = new Vector2(transform.position.x - (dif > 0 ? 0.02f : -0.02f)*playerSpeed*Time.deltaTime, transform.position.y);
             dif = transform.position.x - col.bounds.center.x;

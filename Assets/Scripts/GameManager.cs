@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            onTroubleDone(instance.player.transform.position);
+            //onTroubleDone(instance.player.transform.position);
         }
         else
         {
