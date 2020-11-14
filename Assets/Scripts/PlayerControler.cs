@@ -11,6 +11,8 @@ public class PlayerControler : MonoBehaviour
     private Vector2 InputSpeed;
     private int facingDirection;
     private bool canMove;
+    private bool walledR = false;
+    private bool walledL = false;
 
 
 
@@ -64,6 +66,10 @@ public class PlayerControler : MonoBehaviour
     }
     private void MoveHorizontal()
     {
+        if (walledR && InputSpeed.x > 0)
+            InputSpeed.x = 0;
+        else if (walledL && InputSpeed.x < 0)
+            InputSpeed.x = 0;
         playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
     }
     public void SetInputSpeed(Vector2 InputSpeed)
@@ -98,6 +104,23 @@ public class PlayerControler : MonoBehaviour
         {
             currentInteractableObject = col.gameObject;
         }
+        else if (colTag == "Wall")
+        {
+            if (col.transform.position.x < transform.position.x)
+                walledL = true;
+            else if (col.transform.position.x > transform.position.x)
+                walledR = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject == currentInteractableObject)
+            currentInteractableObject = null;
+        else if (col.gameObject.tag == "Wall")
+        {
+            walledR = false;
+            walledL = false;
+        }
     }
     #endregion
 
@@ -123,12 +146,13 @@ public class PlayerControler : MonoBehaviour
         while (_timer < jumpDuration)
         {
             transform.position = Vector3.Lerp(positionStart, positionEnd, _timer / jumpDuration);
-            /*
+
             if (_timer < jumpDuration / 2)
-                transform.position += Vector3.up * (jumpHeight * _timer/jumpDuration * 2) ;
+                transform.position += Vector3.up * (jumpHeight * _timer / jumpDuration);
             else
-                transform.position += Vector3.up * (jumpHeight * (1 - (_timer / jumpDuration * 2)));
-            */
+                transform.position += Vector3.up * (jumpHeight * (1 - _timer / jumpDuration));
+
+
             _timer += Time.deltaTime;
             yield return null;
         }
