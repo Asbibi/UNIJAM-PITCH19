@@ -26,6 +26,8 @@ public abstract class Interaction : MonoBehaviour
 
     protected IEnumerator WaitForAnimation()
     {
+        playerControler.GetComponent<PlayerControler>().LockPlayer();
+
         //Print the time of when the function is first called.
         Debug.Log("Started Interaction at timestamp : " + Time.time);
 

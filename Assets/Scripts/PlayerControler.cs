@@ -130,10 +130,9 @@ public class PlayerControler : MonoBehaviour
     {
         if (currentInteractableObject != null && canMove)
         {
-            canMove = false;
             if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
             {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<Collider2D>()));
             }
             else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
             {
@@ -150,6 +149,11 @@ public class PlayerControler : MonoBehaviour
     {
         canMove = true;
     }
+    
+    public void LockPlayer()
+    {
+        canMove = false;
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -158,6 +162,10 @@ public class PlayerControler : MonoBehaviour
         if (colTag == "Interactable")
         {
             currentInteractableObject = col.gameObject;
+            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)// && curre.interactible == true)
+            {
+                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
         else if (colTag == "Wall")
         {
@@ -171,7 +179,13 @@ public class PlayerControler : MonoBehaviour
     {
         Debug.Log("exit " + col.gameObject.tag);
         if (col.gameObject == currentInteractableObject)
+        {
+            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
+            {
+                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
+            }
             currentInteractableObject = null;
+        }
         else if (col.gameObject.tag == "Wall")
         {
             walledR = false;
@@ -181,23 +195,31 @@ public class PlayerControler : MonoBehaviour
     #endregion
 
     #region Interactions Other
-    IEnumerator Ladder(bool up, float height)
+    IEnumerator Ladder(bool up, Collider2D col)
     {
+        canMove = false;
         float _currentHeight = 0;
-        int upInt = -1;
-        if (up)
-            upInt = 1;
-        while (_currentHeight < height)
+        float dif = transform.position.x - col.bounds.center.x;
+        while (Mathf.Abs(dif) > 0.1)
         {
-            _currentHeight += ladderSpeed * Time.deltaTime;
-            transform.position += Vector3.up * ladderSpeed * Time.deltaTime * upInt;
+            transform.position = new Vector2(transform.position.x - (dif > 0 ? 0.02f : -0.02f)*playerSpeed*Time.deltaTime, transform.position.y);
+            dif = transform.position.x - col.bounds.center.x;
             yield return null;
         }
-
+        while (_currentHeight < col.bounds.size.y)
+        {
+            animator.SetBool("onLadder", true);
+            _currentHeight += ladderSpeed * Time.deltaTime;
+            transform.position += Vector3.up * ladderSpeed * Time.deltaTime * (up ? 1 : -1);
+            yield return null;
+        }
+        animator.SetBool("onLadder", false);
         canMove = true;
     }
     IEnumerator BalconJump(float yStart, Vector3 positionEnd)
     {
+        canMove = false;
+
         // Initialisation
         float _timer = 0;
         Vector3 _positionStart = transform.position;
