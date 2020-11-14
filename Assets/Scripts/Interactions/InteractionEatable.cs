@@ -12,7 +12,7 @@ public class InteractionEatable : Interaction
 
             StartCoroutine(WaitForAnimation());
 
-            this.GetComponent<SpriteRenderer>().flipX;
+            GetComponent<Renderer>().enabled = false;
         }
         
     }
