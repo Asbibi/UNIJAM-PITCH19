@@ -166,7 +166,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7551222, y: 0}
+  m_Offset: {x: 0.0048781633, y: 0.69335353}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -177,29 +177,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8705504, y: 2}
+  m_Size: {x: 2.8403847, y: 3.3867066}
   m_EdgeRadius: 0
---- !u!50 &222808128
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222808125}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &222808128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990e5a81b7a0eb54cb2e874bea84db53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 0
+  height: 6
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +605,7 @@ GameObject:
   - component: {fileID: 657289823}
   - component: {fileID: 657289822}
   - component: {fileID: 657289827}
+  - component: {fileID: 657289828}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -650,7 +630,7 @@ MonoBehaviour:
   ladderSpeed: 2
   jumpHeight: 1
   jumpDuration: 1
-  attackFrames: 12
+  attackFrames: 17
 --- !u!50 &657289823
 Rigidbody2D:
   serializedVersion: 4
@@ -689,10 +669,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.23, y: 3.15}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 10, y: 10}
+    newSize: {x: 5, y: 5}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -737,12 +717,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 16c4988ba5269f54ebd60cd106240d73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa0ece9a459bd204b8401667aa1b9e2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_DrawMode: 1
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -775,6 +755,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aeb78d8c120f0444a5a7d5bd7836b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &657289828
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657289821}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5859f23c951453544974c0a1ae1e6256, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &670786459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1220,7 @@ PrefabInstance:
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
@@ -1300,7 +1299,7 @@ PrefabInstance:
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
@@ -1379,7 +1378,7 @@ PrefabInstance:
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6261266541257397049, guid: 40aa5efada35ee8499a9e87079d3f54c,
         type: 3}

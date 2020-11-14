@@ -6,7 +6,7 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody2D playerRB;
     private BoxCollider2D playerBC;
-
+    private Animator animator;
 
     private Vector2 InputSpeed;
     private int facingDirection;
@@ -37,6 +37,7 @@ public class PlayerControler : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerBC = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
         facingDirection = 1;
         canMove = true;
         attacking = false;
@@ -120,6 +121,7 @@ public class PlayerControler : MonoBehaviour
             currentAttackFrames = 0;
             sword.SetActive(true);
             attacking = true;
+            animator.SetBool("isAttacking", true);
         }
     }
 
@@ -127,6 +129,7 @@ public class PlayerControler : MonoBehaviour
     {
         sword.SetActive(false);
         attacking = false;
+        animator.SetBool("isAttacking", false);
     }
 
     void OnTriggerEnter2D(Collider2D col)
