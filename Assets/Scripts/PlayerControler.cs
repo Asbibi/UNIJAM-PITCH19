@@ -18,9 +18,10 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private GameObject sword1;
     [SerializeField]
-    private GameObject sword2;
     [SerializeField]
-    private float playerSpeed;
+    private GameObject sword2;
+    private float playerSpeed = 200;
+
 
     [Header("Interactions")]
     private GameObject currentInteractableObject = null;
@@ -31,7 +32,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private float jumpDuration = 1f;
     [SerializeField]
-    private int attackFrames;
+    private int attackFrames = 17;
     private int currentAttackFrames;
 
     // Start is called before the first frame update
