@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,8 +9,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerControler player = null;
     [SerializeField] MasterController master = null;
+    [SerializeField] Canvas canva = null;
     public Camera mainCam = null;
     public float gameTime = 60;
+    [SerializeField] Text scoreText = null;
+
+    [SerializeField] GameObject scoreTextUi = null;
+
+    int score = 0;
 
     public delegate void troubleDone(Vector3 playerPosition);
     static public event troubleDone onTroubleDone;
@@ -21,6 +28,7 @@ public class GameManager : MonoBehaviour
             // Detruire les objets liés à l'instance dont le joueur
             Destroy(player.gameObject);
             Destroy(master.gameObject);
+            Destroy(canva.gameObject);
             // Detruire le GameManager
             Destroy(gameObject); // attention à toujours detruire le gameobject sinon ca detruit juste le component
         }
@@ -86,7 +94,10 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            //onTroubleDone(instance.player.transform.position);
+            instance.score += actionScore;
+            GameObject text = Instantiate(instance.scoreTextUi, instance.canva.transform);
+            text.GetComponent<UIScoreText>().Init(actionScore, instance.mainCam, instance.player.transform.position);
+            instance.UpdateTextScore();
         }
         else
         {
@@ -95,7 +106,21 @@ public class GameManager : MonoBehaviour
     }
     static public void ReportPlayer(int sanctionScore)
     {
-        //...
+        if (instance != null)
+        {
+            instance.score += sanctionScore;
+            if (instance.score < 0)
+                instance.score = 0;
+            instance.UpdateTextScore();
+        }
+        else
+        {
+            Debug.LogError("GameManager instance null");
+        }
         Debug.LogWarning("Reported");
+    }
+    void UpdateTextScore()
+    {
+        scoreText.text = "Score : " + score;
     }
 }
