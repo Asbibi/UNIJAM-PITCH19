@@ -6,12 +6,16 @@ public abstract class Interaction : MonoBehaviour
 {
     [SerializeField]
     private int animationTime;
-    private GameObject player;
+    private PlayerControler playerControler;
     protected bool interactible = true;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
+        if (playerControler == null)
+        {
+            Debug.Log("Cant find gamecontroller");
+        }
     }
 
     public abstract void Interact();
@@ -26,7 +30,8 @@ public abstract class Interaction : MonoBehaviour
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Interaction at timestamp : " + Time.time);
+        playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
 
-        player.GetComponent<PlayerControler>().FreePlayer();
+        playerControler.GetComponent<PlayerControler>().FreePlayer();
     }
 }

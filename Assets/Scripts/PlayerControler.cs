@@ -16,7 +16,9 @@ public class PlayerControler : MonoBehaviour
     private bool walledL = false;
 
     [SerializeField]
-    private GameObject sword;
+    private GameObject sword1;
+    [SerializeField]
+    private GameObject sword2;
     [SerializeField]
     private float playerSpeed;
 
@@ -92,6 +94,9 @@ public class PlayerControler : MonoBehaviour
         if (attacking)
         {
             currentAttackFrames++;
+            if (currentAttackFrames > attackFrames *3/4){
+                sword2.SetActive(true);
+            }
             if (currentAttackFrames > attackFrames)
             {
                 StopSwordAttack();
@@ -104,15 +109,17 @@ public class PlayerControler : MonoBehaviour
         if (!attacking)
         {
             currentAttackFrames = 0;
-            sword.SetActive(true);
+            sword1.SetActive(true);
             attacking = true;
             animator.SetBool("isAttacking", true);
         }
     }
 
+
     public void StopSwordAttack()
     {
-        sword.SetActive(false);
+        sword1.SetActive(false);
+        sword2.SetActive(false);
         attacking = false;
         animator.SetBool("isAttacking", false);
     }
