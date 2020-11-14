@@ -2415,40 +2415,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 8300000, guid: ae6154e37cb542748a09e574fb639bf1, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: 
-    clip: {fileID: 8300000, guid: 113f61003eb36ca4dbbb0717125accdb, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: 
+  - name: Theme
     clip: {fileID: 8300000, guid: 587b82c72ba6cc7419ce56f46f05322b, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 0.4
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 8300000, guid: 1217ae61f6d910149869c13fe53b1a2e, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: 
+  - name: vase
     clip: {fileID: 8300000, guid: f9407bf24840ef84e8e4fe1c11b20da9, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
+  - name: epee
     clip: {fileID: 8300000, guid: fe883696ea371ed4b8c04eaed64c4644, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
 --- !u!4 &1477166401
