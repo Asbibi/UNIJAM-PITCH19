@@ -5,20 +5,20 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     [SerializeField]
-    private int points = 0;
+    private int maxNumberOfCoins = 0;
     [SerializeField]
-    private Sprite broken = null;
-    private SpriteRenderer spriteRenderer;
+    private GameObject coinPF = null;
     public void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
     }
 
     public void TakeDamage()
     {
-        int NbPoints = Random.Range(0,points);
-        Debug.Log("adding " + NbPoints + " points");
-        spriteRenderer.sprite = broken;
+        int NbCoins = Random.Range(0,maxNumberOfCoins);
+        Debug.Log("dropping " + NbCoins + " coins");
+        gameObject.SetActive(false);
+        FindObjectOfType<AudioManager>().Play("vase");
     }
 
 }

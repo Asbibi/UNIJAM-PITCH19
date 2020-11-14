@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpyMage : Spy
+public class SpyMage : MonoBehaviour
 {
     [SerializeField] private float visionDistance = 5;
     [SerializeField] private Transform visionPivot = null;
