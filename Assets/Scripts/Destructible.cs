@@ -7,8 +7,10 @@ public class Destructible : MonoBehaviour
     [SerializeField]
     private int points = 0;
     [SerializeField]
-    public Sprite broken;
-    public SpriteRenderer spriteRenderer;
+    private Sprite broken;
+    private SpriteRenderer spriteRenderer;
+    private bool interactable = true;
+
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -16,10 +18,14 @@ public class Destructible : MonoBehaviour
 
     public void TakeDamage()
     {
-        int NbPoints = Random.Range(0, points);
-        Debug.Log("adding " + NbPoints + " points");
-        FindObjectOfType<AudioManager>().Play("vase");
-        spriteRenderer.sprite = broken;
+        if (interactable)
+        {
+            int NbPoints = Random.Range(0, points);
+            Debug.Log("adding " + NbPoints + " points");
+            spriteRenderer.sprite = broken;
+            FindObjectOfType<AudioManager>().Play("vase");
+            interactable = false;
+        }
     }
 
 }
