@@ -12,13 +12,22 @@ public class PlayerControler : MonoBehaviour
     private int facingDirection;
     private bool canMove;
     private bool attacking;
+    private bool walledR = false;
+    private bool walledL = false;
 
     [SerializeField]
     private GameObject sword;
     [SerializeField]
     private float playerSpeed;
+
+    [Header("Interactions")]
+    private GameObject currentInteractableObject = null;
     [SerializeField]
-    private LayerMask ladderLayerM;
+    private float ladderSpeed = 2f;
+    [SerializeField]
+    private float jumpHeight = 1f;
+    [SerializeField]
+    private float jumpDuration = 1f;
     [SerializeField]
     private int attackFrames;
     private int currentAttackFrames;
@@ -36,8 +45,13 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        MoveHorizontal();
-        TurnAround();
+        if (canMove)
+        {
+            MoveHorizontal();
+            TurnAround();
+        }
+        else
+            playerRB.velocity = Vector2.zero;
         AttackTimer();
     }
 
@@ -53,6 +67,7 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
+    #region Movement Horizontal
     private void TurnAround()
     {
         if (InputSpeed.x > 0 && facingDirection == -1)
@@ -68,15 +83,37 @@ public class PlayerControler : MonoBehaviour
     }
     private void MoveHorizontal()
     {
-        if (canMove)
-        {
-            playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
-        }
+        if (walledR && InputSpeed.x > 0)
+            InputSpeed.x = 0;
+        else if (walledL && InputSpeed.x < 0)
+            InputSpeed.x = 0;
+        playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
     }
+    public void SetInputSpeed(Vector2 InputSpeed)
+    {
+        this.InputSpeed = InputSpeed;
+    }
+    #endregion
 
+    #region Interactions Base
     public void Interact()
     {
+        if (currentInteractableObject != null && canMove)
+        {
+            canMove = false;
+
+
+            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            {
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+            }
+            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
+            {
+                StartCoroutine(BalconJump(currentInteractableObject.transform.position, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
+            }
+        }
     }
+    void OnTriggerEnter2D(Collider2D col)
 
     public void SwordAttack()
     {
@@ -96,12 +133,68 @@ public class PlayerControler : MonoBehaviour
 
     public void SetInputSpeed(Vector2 InputSpeed)
     {
-        this.InputSpeed = InputSpeed;
+        string colTag = col.gameObject.tag;
+        Debug.Log(colTag);
+        if (colTag == "Interactable")
+        {
+            currentInteractableObject = col.gameObject;
+        }
+        else if (colTag == "Wall")
+        {
+            if (col.transform.position.x < transform.position.x)
+                walledL = true;
+            else if (col.transform.position.x > transform.position.x)
+                walledR = true;
+        }
     }
-
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerExit2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.tag);
+        if (col.gameObject == currentInteractableObject)
+            currentInteractableObject = null;
+        else if (col.gameObject.tag == "Wall")
+        {
+            walledR = false;
+            walledL = false;
+        }
     }
+    #endregion
 
+    #region Interactions Other
+    IEnumerator Ladder(bool up, float height)
+    {
+        float _currentHeight = 0;
+        int upInt = -1;
+        if (up)
+            upInt = 1;
+        while (_currentHeight < height)
+        {
+            _currentHeight += ladderSpeed * Time.deltaTime; //ladder speed;
+            transform.position += Vector3.up * ladderSpeed * Time.deltaTime * upInt;
+            yield return null;
+        }
+
+        canMove = true;
+    }
+    IEnumerator BalconJump(Vector3 positionStart, Vector3 positionEnd)
+    {
+        float _timer = 0;
+        while (_timer < jumpDuration)
+        {
+            float x = _timer / jumpDuration;
+            transform.position = Vector3.Lerp(positionStart, positionEnd, x);
+
+            /*
+            if (_timer < jumpDuration / 2)
+                transform.position += Vector3.up * (jumpHeight * _timer / jumpDuration);
+            else
+                transform.position += Vector3.up * (jumpHeight * (1 - _timer / jumpDuration));
+            */
+            transform.position += Vector3.up * (jumpHeight *(-4*x*x + 4*x));
+
+            _timer += Time.deltaTime;
+            yield return null;
+        }
+        canMove = true;
+    }
+    #endregion
 }

@@ -6,6 +6,8 @@ public class CameraControler : MonoBehaviour
 {
     [SerializeField]
     private float smoothTime;
+    [SerializeField]
+    private Vector3 offset;
     private float speed;
     private GameObject player;
     // Start is called before the first frame update
