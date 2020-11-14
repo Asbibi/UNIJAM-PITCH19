@@ -243,6 +243,7 @@ public class PlayerControler : MonoBehaviour
     }
     #endregion
 
+    #region Replacement joueur
     public void setCanMove(bool canMoveSetting)
     {
         canMove = canMoveSetting;
@@ -267,4 +268,5 @@ public class PlayerControler : MonoBehaviour
         yield return new WaitForSeconds(1);
         setCanMove(true);
     }
+    #endregion
 }
