@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Destructible
   - PickUp
+  - Master
   layers:
   - Default
   - TransparentFX

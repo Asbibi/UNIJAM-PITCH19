@@ -56,17 +56,7 @@ public class PlayerControler : MonoBehaviour
         AttackTimer();
     }
 
-    private void AttackTimer()
-    {
-        if (attacking)
-        {
-            currentAttackFrames++;
-            if (currentAttackFrames > attackFrames)
-            {
-                StopSwordAttack();
-            }
-        }
-    }
+
 
     #region Movement Horizontal
     private void TurnAround()
@@ -96,20 +86,15 @@ public class PlayerControler : MonoBehaviour
     }
     #endregion
 
-    #region Interactions Base
-    public void Interact()
+    #region SwordAttack
+    private void AttackTimer()
     {
-        if (currentInteractableObject != null && canMove)
+        if (attacking)
         {
-            canMove = false;
-
-            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            currentAttackFrames++;
+            if (currentAttackFrames > attackFrames)
             {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
-            }
-            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
-            {
-                StartCoroutine(BalconJump(currentInteractableObject.transform.position, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
+                StopSwordAttack();
             }
         }
     }
@@ -131,6 +116,28 @@ public class PlayerControler : MonoBehaviour
         attacking = false;
         animator.SetBool("isAttacking", false);
     }
+    #endregion
+
+    #region Interactions Base
+    public void Interact()
+    {
+        if (currentInteractableObject != null && canMove)
+        {
+            canMove = false;
+            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            {
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+            }
+            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
+            {
+                StartCoroutine(BalconJump(currentInteractableObject.transform.position.y, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
+            }
+            else
+            {
+            }
+        }
+    }
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -177,18 +184,41 @@ public class PlayerControler : MonoBehaviour
 
         canMove = true;
     }
-    IEnumerator BalconJump(Vector3 positionStart, Vector3 positionEnd)
+    IEnumerator BalconJump(float yStart, Vector3 positionEnd)
     {
+        // Initialisation
         float _timer = 0;
+        Vector3 _positionStart = transform.position;
+        positionEnd.y += _positionStart.y - yStart;
+
+        //Rotation
+        if (positionEnd.x < _positionStart.x)  // on va vers la gauche
+        {
+            facingDirection = -1;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            facingDirection = 1;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        // Jump
         while (_timer < jumpDuration)
         {
             float x = _timer / jumpDuration;
-            transform.position = Vector3.Lerp(positionStart, positionEnd, x);
+            transform.position = Vector3.Lerp(_positionStart, positionEnd, x);
             transform.position += Vector3.up * (jumpHeight *(-4*x*x + 4*x));
 
             _timer += Time.deltaTime;
             yield return null;
         }
+
+        if (facingDirection == 1)
+            walledR = false;
+        else
+            walledL = false;
+
         canMove = true;
     }
     #endregion
