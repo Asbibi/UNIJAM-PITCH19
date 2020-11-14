@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private int attackFrames = 17;
     private int currentAttackFrames;
+    [SerializeField]
+    private Text actionText;
 
     //ajout Paul1
     public Transform replacePosition = null;
@@ -51,6 +54,7 @@ public class PlayerControler : MonoBehaviour
         attacking = false;
         //ajout Paul1
         positionYBase = transform.position.y;
+        actionText.enabled = false;
     }
 
     // Update is called once per frame
@@ -180,6 +184,7 @@ public class PlayerControler : MonoBehaviour
             {
                 currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
             }*/
+            actionText.enabled = true;
         }
         else if (colTag == "Wall")
         {
@@ -200,6 +205,7 @@ public class PlayerControler : MonoBehaviour
                 currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
             }*/
             currentInteractableObject = null;
+            actionText.enabled = false;
         }
         else if (col.gameObject.tag == "Wall")
         {
