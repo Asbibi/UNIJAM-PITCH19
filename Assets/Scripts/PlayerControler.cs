@@ -6,7 +6,7 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody2D playerRB;
     private BoxCollider2D playerBC;
-
+    private Animator animator;
 
     private Vector2 InputSpeed;
     private int facingDirection;
@@ -16,9 +16,9 @@ public class PlayerControler : MonoBehaviour
     private bool walledL = false;
 
     [SerializeField]
-    private GameObject sword;
+    private GameObject sword = null;
     [SerializeField]
-    private float playerSpeed;
+    private float playerSpeed = 200;
 
     [Header("Interactions")]
     private GameObject currentInteractableObject = null;
@@ -29,7 +29,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private float jumpDuration = 1f;
     [SerializeField]
-    private int attackFrames;
+    private int attackFrames = 17;
     private int currentAttackFrames;
 
     // Start is called before the first frame update
@@ -37,6 +37,7 @@ public class PlayerControler : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerBC = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
         facingDirection = 1;
         canMove = true;
         attacking = false;
@@ -55,17 +56,7 @@ public class PlayerControler : MonoBehaviour
         AttackTimer();
     }
 
-    private void AttackTimer()
-    {
-        if (attacking)
-        {
-            currentAttackFrames++;
-            if (currentAttackFrames > attackFrames)
-            {
-                StopSwordAttack();
-            }
-        }
-    }
+
 
     #region Movement Horizontal
     private void TurnAround()
@@ -95,20 +86,15 @@ public class PlayerControler : MonoBehaviour
     }
     #endregion
 
-    #region Interactions Base
-    public void Interact()
+    #region SwordAttack
+    private void AttackTimer()
     {
-        if (currentInteractableObject != null && canMove)
+        if (attacking)
         {
-            canMove = false;
-
-            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            currentAttackFrames++;
+            if (currentAttackFrames > attackFrames)
             {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
-            }
-            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
-            {
-                StartCoroutine(BalconJump(currentInteractableObject.transform.position, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
+                StopSwordAttack();
             }
         }
     }
@@ -120,6 +106,7 @@ public class PlayerControler : MonoBehaviour
             currentAttackFrames = 0;
             sword.SetActive(true);
             attacking = true;
+            animator.SetBool("isAttacking", true);
         }
     }
 
@@ -127,7 +114,30 @@ public class PlayerControler : MonoBehaviour
     {
         sword.SetActive(false);
         attacking = false;
+        animator.SetBool("isAttacking", false);
     }
+    #endregion
+
+    #region Interactions Base
+    public void Interact()
+    {
+        if (currentInteractableObject != null && canMove)
+        {
+            canMove = false;
+            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            {
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+            }
+            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
+            {
+                StartCoroutine(BalconJump(currentInteractableObject.transform.position.y, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
+            }
+            else
+            {
+            }
+        }
+    }
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -174,18 +184,41 @@ public class PlayerControler : MonoBehaviour
 
         canMove = true;
     }
-    IEnumerator BalconJump(Vector3 positionStart, Vector3 positionEnd)
+    IEnumerator BalconJump(float yStart, Vector3 positionEnd)
     {
+        // Initialisation
         float _timer = 0;
+        Vector3 _positionStart = transform.position;
+        positionEnd.y += _positionStart.y - yStart;
+
+        //Rotation
+        if (positionEnd.x < _positionStart.x)  // on va vers la gauche
+        {
+            facingDirection = -1;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            facingDirection = 1;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        // Jump
         while (_timer < jumpDuration)
         {
             float x = _timer / jumpDuration;
-            transform.position = Vector3.Lerp(positionStart, positionEnd, x);
+            transform.position = Vector3.Lerp(_positionStart, positionEnd, x);
             transform.position += Vector3.up * (jumpHeight *(-4*x*x + 4*x));
 
             _timer += Time.deltaTime;
             yield return null;
         }
+
+        if (facingDirection == 1)
+            walledR = false;
+        else
+            walledL = false;
+
         canMove = true;
     }
     #endregion

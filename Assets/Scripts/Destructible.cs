@@ -5,9 +5,9 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     [SerializeField]
-    private int maxNumberOfCoins;
+    private int maxNumberOfCoins = 0;
     [SerializeField]
-    private GameObject coinPF;
+    private GameObject coinPF = null;
     public void Start()
     {
         
