@@ -202,6 +202,7 @@ public class PlayerControler : MonoBehaviour
         float _timer = 0;
         Vector3 _positionStart = transform.position;
         positionEnd.y += _positionStart.y - yStart;
+        animator.SetBool("jumping", true);
 
         //Rotation
         if (positionEnd.x < _positionStart.x)  // on va vers la gauche
@@ -231,6 +232,7 @@ public class PlayerControler : MonoBehaviour
         else
             walledL = false;
 
+        animator.SetBool("jumping", false);
         canMove = true;
     }
     #endregion
