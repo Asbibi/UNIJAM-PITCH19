@@ -95,24 +95,7 @@ public class PlayerControler : MonoBehaviour
     }
     #endregion
 
-    #region Interactions Base
-    public void Interact()
-    {
-        if (currentInteractableObject != null && canMove)
-        {
-            canMove = false;
-
-            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
-            {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
-            }
-            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
-            {
-                StartCoroutine(BalconJump(currentInteractableObject.transform.position, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
-            }
-        }
-    }
-
+    #region SwordAttack
     public void SwordAttack()
     {
         if (!attacking)
@@ -128,6 +111,29 @@ public class PlayerControler : MonoBehaviour
         sword.SetActive(false);
         attacking = false;
     }
+
+    #endregion
+
+    #region Interactions Base
+    public void Interact()
+    {
+        if (currentInteractableObject != null && canMove)
+        {
+            canMove = false;
+            if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
+            {
+                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<InteractionLadder>().height));
+            }
+            else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
+            {
+                StartCoroutine(BalconJump(currentInteractableObject.transform.position, currentInteractableObject.GetComponent<InteractionBalcon>().GetOtherPointPosition()));                
+            }
+            else
+            {
+            }
+        }
+    }
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
