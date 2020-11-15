@@ -51,7 +51,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: alagard Material
   m_Shader: {fileID: 4800000, guid: 128e987d567d4e2c824d754223b3f3b0, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: alagard
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 759066972
   material: {fileID: -1692168908719180107}
-  materialHashCode: 0
+  materialHashCode: -1831125252
   m_Version: 1.1.0
   m_SourceFontFileGUID: 5bdd495f69cbe974ca4d4300b3b08b56
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 5bdd495f69cbe974ca4d4300b3b08b56,
