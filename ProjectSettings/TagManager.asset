@@ -9,6 +9,7 @@ TagManager:
   - Destructible
   - PickUp
   - Master
+  - ViewBox
   layers:
   - Default
   - TransparentFX

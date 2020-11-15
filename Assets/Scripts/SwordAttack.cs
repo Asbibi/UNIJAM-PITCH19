@@ -2,17 +2,17 @@
 
 public class SwordAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D target)
+    private void OnTriggerStay2D(Collider2D target)
     {
-        Debug.Log("Sword collided with:" + target.tag);
+        Debug.Log("Colide");
         if (target.CompareTag("Destructible"))
         {
+            Debug.Log("sos");
             target.GetComponent<Destructible>().TakeDamage();
         }
     }

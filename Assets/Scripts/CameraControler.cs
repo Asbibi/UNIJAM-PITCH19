@@ -5,9 +5,7 @@ using UnityEngine;
 public class CameraControler : MonoBehaviour
 {
     [SerializeField]
-    private float smoothTime;
-    [SerializeField]
-    private Vector3 offset;
+    private float smoothTime = 0.7f;
     private float speed;
     private GameObject player;
     // Start is called before the first frame update
