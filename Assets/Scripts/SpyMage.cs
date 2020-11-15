@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpyMage : SpyLinear
 {
     [SerializeField] private float uTurnDelay = 2;
+    [SerializeField] Animator mageAnimator;
     float timerUturn = 0;
 
 
@@ -24,8 +25,20 @@ public class SpyMage : SpyLinear
         }
     }
 
-    public void ResetUturnTimer()
+    public void Init()
     {
         timerUturn = 0;
+        mageAnimator.SetBool("Pop", true);
+    }
+
+    public void Disable()
+    {
+        mageAnimator.SetBool("Pop", false);
+        StartCoroutine(DisableAnim());
+    }
+    IEnumerator DisableAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
     }
 }

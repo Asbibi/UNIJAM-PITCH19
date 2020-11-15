@@ -67,18 +67,19 @@ public class GameManager : MonoBehaviour
             {
                 instance.replacementPlayer();
             }
+
+            if (instance.player.getReplacement())
+            {
+                instance.master.GetComponentInChildren<Animator>().SetBool("lookback", true);
+            }
+            else
+            {
+                instance.master.GetComponentInChildren<Animator>().SetBool("lookback", false);
+            }
         }
         else
         {
             Debug.LogError("GameManager instance null");
-        }
-        if (instance.player.getReplacement())
-        {
-            instance.master.GetComponent<Animator>().SetBool("lookback", true);
-        }
-        else
-        {
-            instance.master.GetComponent<Animator>().SetBool("lookback", false);
         }
     }
 

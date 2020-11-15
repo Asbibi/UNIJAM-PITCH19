@@ -52,6 +52,7 @@ public class SpyMageManager : MonoBehaviour
         }
         mage.position = mageSpawnPoints[idSpawnPoint].position;
         mage.gameObject.SetActive(true);
+        mage.GetComponent<SpyMage>().Init();
         spawned = true;
     }
 
@@ -64,7 +65,8 @@ public class SpyMageManager : MonoBehaviour
     IEnumerator waitToDespawn()
     {
         yield return new WaitForSeconds(durationSpawn);
-        mage.gameObject.SetActive(false);
+        //mage.gameObject.SetActive(false);
+        mage.GetComponent<SpyMage>().Disable();
         spawned = false;
         waiting = false;
     }
