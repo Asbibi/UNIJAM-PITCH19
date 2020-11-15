@@ -177,11 +177,13 @@ public class PlayerControler : MonoBehaviour
     public void FreePlayer()
     {
         canMove = true;
+        animator.SetBool("interacting", false);
     }
     
     public void LockPlayer()
     {
         canMove = false;
+        animator.SetBool("interacting", true);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -190,11 +192,11 @@ public class PlayerControler : MonoBehaviour
         //Debug.Log(colTag + " " + col.gameObject.name);
         if (colTag == "Interactable")
         {
-            currentInteractableObject = col.gameObject;/*
-            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)// && curre.interactible == true)
+            currentInteractableObject = col.gameObject;
+            if (currentInteractableObject.transform.Find("Outline") != null && currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null && currentInteractableObject.GetComponent<Interaction>().isInteractible() == true)
             {
                 currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
-            }*/
+            }
             actionText.enabled = true;
         }
         else if (colTag == "Wall")
@@ -208,13 +210,14 @@ public class PlayerControler : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         //Debug.LogWarning("exit " + col.gameObject.tag);
+
+        if (col.transform.Find("Outline") != null && col.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
+        {
+            col.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
+        }
+
         if (col.gameObject == currentInteractableObject)
         {
-            /*
-            if (currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
-            {
-                currentInteractableObject.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-            }*/
             currentInteractableObject = null;
             actionText.enabled = false;
         }

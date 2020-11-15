@@ -5,9 +5,8 @@ using UnityEngine;
 public class InteractionChangeSprite : Interaction
 {
     [SerializeField]
-    private Sprite eaten;
+    private Sprite modifiedSprite;
     private SpriteRenderer spriteRenderer;
-    public AudioSource audio;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -19,11 +18,12 @@ public class InteractionChangeSprite : Interaction
         if (interactible)
         {
             Debug.Log("Miam miam");
-            audio = GetComponent<AudioSource>();
-            audio.Play();
+            if(GetComponent<AudioSource>() != null)
+            {
+                GetComponent<AudioSource>().Play();
+            }
 
-
-            spriteRenderer.sprite = eaten;
+            spriteRenderer.sprite = modifiedSprite;
 
             StartCoroutine(WaitForAnimation());
 
@@ -32,6 +32,15 @@ public class InteractionChangeSprite : Interaction
             Debug.Log("adding " + NbPoints + " points");
 
             interactible = false;
+
+            if (transform.Find("Outline") != null && transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
+            {
+                transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
+            }
+            if (transform.Find("AnimationToDisable")){
+                transform.Find("AnimationToDisable").gameObject.SetActive(false);
+            }
+
 
             GameManager.NotifyTroubleDone(NbPoints);
         }
