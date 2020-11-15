@@ -6,8 +6,6 @@ public class DestructibleCrow : Destructible
 {
     [SerializeField]
     private int basePoints = 0;
-    private bool interactable = true;
-
 
     override public void TakeDamage()
     {

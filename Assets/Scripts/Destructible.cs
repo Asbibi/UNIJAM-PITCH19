@@ -9,7 +9,7 @@ public class Destructible : MonoBehaviour
     [SerializeField]
     private Sprite broken;
     private SpriteRenderer spriteRenderer;
-    private bool interactable = true;
+    protected bool interactable = true;
 
     public void Start()
     {
