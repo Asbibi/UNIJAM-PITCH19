@@ -8,7 +8,6 @@ public class UITextScene : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") || Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("n");
             StartCoroutine(GoToNextScene());
         }
     }
@@ -18,6 +17,6 @@ public class UITextScene : MonoBehaviour
         GetComponent<Animator>().SetBool("Next", true);
         yield return new WaitForSeconds(1);
 
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("FinalScene");
     }
 }
