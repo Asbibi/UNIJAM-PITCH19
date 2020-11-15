@@ -25,6 +25,7 @@ public class SpyCrow : SpyCircle
         if (state == CROWSTATE.OBSERVING && Vector3.Distance(playerPosition, transform.position) < visionDistance)
         {
             StartCoroutine(flyYouFool());
+            FindObjectOfType<AudioManager>().Play("crow");
             spawnExclamation();
             //Report();
         }
@@ -68,12 +69,15 @@ public class SpyCrow : SpyCircle
 
     public void Stunned()
     {
+        FindObjectOfType<AudioManager>().Play("crowdeath");
         StopAllCoroutines();
         if (state == CROWSTATE.REPORTING)
         {
             transform.position += Vector3.down;
+            
         }
         state = CROWSTATE.STUNED;
         animator.SetBool("Stuned", true);
+        
     }
 }
