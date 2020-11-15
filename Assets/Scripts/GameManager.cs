@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     //Fonction permettant de replacer le joueur devant son maître
     private void replacementPlayer()
     {
+        
         instance.master.Stop();
         instance.player.setCanMove(false);
         instance.player.setReplacement(true);
@@ -65,7 +66,11 @@ public class GameManager : MonoBehaviour
             //Si le joueur est derrière le maitre
             if (instance.master.transform.position.x > instance.player.transform.position.x + 2)//2 étant la distance tolérée derrière le maitre
             {
+                FindObjectOfType<AudioManager>().Play("maitre"); 
                 instance.replacementPlayer();
+                
+
+
             }
 
             if (instance.player.getReplacement())
