@@ -74,6 +74,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    static public Transform GetMasterTransform()
+    {
+        if (instance != null)
+        {
+            return instance.master.transform;
+        }
+        else
+        {
+            Debug.LogError("GameManager instance null");
+            return null;
+        }
+    }
+
     // Actions et animations à effectuer quand la partie est finie
     static public void EndGame()
     {

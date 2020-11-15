@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpyCircle : Spy
 {
-    [SerializeField] private float visionDistance = 3.15f;
+    [SerializeField] protected float visionDistance = 3.15f;
     [SerializeField] Transform visionTransform = null;
 
     private void Awake()
@@ -19,4 +19,8 @@ public class SpyCircle : Spy
             Report();
         }
     }
+
+    
+
+
 }

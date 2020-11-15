@@ -7,7 +7,7 @@ public class InteractionChangeSprite : Interaction
     [SerializeField]
     private Sprite eaten;
     private SpriteRenderer spriteRenderer;
-   public AudioSource audio;
+    public AudioSource audio;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();

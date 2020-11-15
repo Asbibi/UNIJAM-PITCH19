@@ -5,7 +5,7 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     [SerializeField]
-    private int points = 0;
+    protected int points = 0;
     [SerializeField]
     private Sprite broken;
     private SpriteRenderer spriteRenderer;
@@ -16,12 +16,12 @@ public class Destructible : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void TakeDamage()
+    virtual public void TakeDamage()
     {
         if (interactable)
         {
             int NbPoints = Random.Range(0, points);
-            Debug.Log("adding " + NbPoints + " points");
+            GameManager.NotifyTroubleDone(NbPoints);
             spriteRenderer.sprite = broken;
             FindObjectOfType<AudioManager>().Play("vase");
             interactable = false;
