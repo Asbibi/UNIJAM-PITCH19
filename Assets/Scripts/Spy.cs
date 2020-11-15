@@ -28,5 +28,6 @@ public class Spy : MonoBehaviour
     {
         spawnExclamation();
         GameManager.ReportPlayer(sanctionScore);
+        FindObjectOfType<AudioManager>().Play("spy");
     }
 }
