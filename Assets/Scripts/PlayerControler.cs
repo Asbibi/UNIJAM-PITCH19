@@ -170,11 +170,13 @@ public class PlayerControler : MonoBehaviour
     public void FreePlayer()
     {
         canMove = true;
+        animator.SetBool("interacting", false);
     }
     
     public void LockPlayer()
     {
         canMove = false;
+        animator.SetBool("interacting", true);
     }
 
     void OnTriggerEnter2D(Collider2D col)

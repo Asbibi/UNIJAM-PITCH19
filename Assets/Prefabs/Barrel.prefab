@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93037fb58923003499be8cc8b019ce87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTime: 50
+  animationTime: 60
   pointsGiven: 10
   modifiedSprite: {fileID: 0}
 --- !u!82 &7226681055905070089

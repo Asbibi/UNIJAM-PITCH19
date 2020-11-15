@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTime: 1
-  pointsGiven: 10
+  pointsGiven: 25
   modifiedSprite: {fileID: 0}
 --- !u!82 &8887271802730704927
 AudioSource:

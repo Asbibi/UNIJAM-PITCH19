@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93037fb58923003499be8cc8b019ce87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTime: 1
+  animationTime: 30
   pointsGiven: 10
   modifiedSprite: {fileID: 21300000, guid: e29a2a1f9774c7547aa0ee58d1f007fe, type: 3}
 --- !u!212 &5832219299066939116
