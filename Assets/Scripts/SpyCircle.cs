@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpyFly : Spy
+public class SpyCircle : Spy
 {
-    [SerializeField] private float visionDistance = 3;
+    [SerializeField] private float visionDistance = 3.15f;
     [SerializeField] Transform visionTransform = null;
 
     private void Awake()
     {
-        visionTransform.localScale = Vector3.one * (visionDistance / 3);
+        visionTransform.localScale = Vector3.one * (visionDistance*35 / 3.15f);
     }
 
     override protected void OnTroubleNotified(Vector3 playerPosition)
