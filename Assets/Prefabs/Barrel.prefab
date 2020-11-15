@@ -94,5 +94,15 @@ PrefabInstance:
       propertyPath: animationTime
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8887271802730704927, guid: 7ee1bfa258c769b46b5c917714eca113,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b3e5bb4f301193e4ba3c0d93f0f27df2, type: 3}
+    - target: {fileID: 8887271802730704927, guid: 7ee1bfa258c769b46b5c917714eca113,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee1bfa258c769b46b5c917714eca113, type: 3}

@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Canvas canva = null;
     public Camera mainCam = null;
     public float gameTime = 60;
-    [SerializeField] Text scoreText = null;
 
+    [Header("Score")]
+    [SerializeField] Text scoreText = null;
     [SerializeField] GameObject scoreTextUi = null;
+    [SerializeField] GameObject sanctionTextUi = null;
 
     int score = 0;
 
@@ -80,6 +82,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    static public Transform GetMasterTransform()
+    {
+        if (instance != null)
+        {
+            return instance.master.transform;
+        }
+        else
+        {
+            Debug.LogError("GameManager instance null");
+            return null;
+        }
+    }
+
     // Actions et animations à effectuer quand la partie est finie
     static public void EndGame()
     {
@@ -104,8 +119,11 @@ public class GameManager : MonoBehaviour
         {
             instance.score += actionScore;
             GameObject text = Instantiate(instance.scoreTextUi, instance.canva.transform);
-            text.GetComponent<UIScoreText>().Init(actionScore, instance.mainCam, instance.player.transform.position);
+            text.GetComponent<UIScoreText>().Init("+" + actionScore + " !", instance.mainCam, instance.player.transform.position);
             instance.UpdateTextScore();
+
+            if (onTroubleDone != null)
+                onTroubleDone(instance.player.transform.position);
         }
         else
         {
@@ -116,9 +134,11 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            instance.score += sanctionScore;
+            instance.score -= sanctionScore;
             if (instance.score < 0)
                 instance.score = 0;
+            GameObject text = Instantiate(instance.sanctionTextUi, instance.canva.transform);
+            text.GetComponent<UIScoreText>().Init("-" + sanctionScore + "...", instance.mainCam, instance.player.transform.position);
             instance.UpdateTextScore();
         }
         else

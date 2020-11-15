@@ -7,9 +7,9 @@ public class Spy : MonoBehaviour
     [SerializeField] int sanctionScore = 1;
 
     // Start is called before the first frame update
-    void Start()
+    virtual protected void Start()
     {
-        
+        GameManager.onTroubleDone += OnTroubleNotified;
     }
 
     virtual protected void OnTroubleNotified(Vector3 playerPosition)
