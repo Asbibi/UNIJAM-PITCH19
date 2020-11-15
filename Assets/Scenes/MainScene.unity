@@ -4526,6 +4526,7 @@ MonoBehaviour:
   attackFrames: 18
   actionText: {fileID: 459062772}
   replacePosition: {fileID: 1751193666}
+  replacing: 0
 --- !u!50 &657289823
 Rigidbody2D:
   serializedVersion: 4
@@ -5732,6 +5733,9 @@ MonoBehaviour:
     type: 3}
   sanctionTextUi: {fileID: 3969153240058279031, guid: c8a2ee4a439b21d468b11b2fad9734a9,
     type: 3}
+  scoreLateSanction: 1
+  delayLateSanction: 0.1
+  fadeAnimator: {fileID: 0}
 --- !u!4 &920845972
 Transform:
   m_ObjectHideFlags: 0
@@ -7608,6 +7612,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: crowdeath
     clip: {fileID: 8300000, guid: de8d7ccdd90b48141819a125e60fefca, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: spy
+    clip: {fileID: 8300000, guid: f71858663d3d33c419f064d5b992cf81, type: 3}
     volume: 1
     pitch: 1
     loop: 0
