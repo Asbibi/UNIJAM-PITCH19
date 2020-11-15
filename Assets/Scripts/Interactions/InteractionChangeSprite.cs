@@ -7,6 +7,7 @@ public class InteractionChangeSprite : Interaction
     [SerializeField]
     private Sprite eaten;
     private SpriteRenderer spriteRenderer;
+    public AudioSource audio;
     public void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -18,7 +19,8 @@ public class InteractionChangeSprite : Interaction
         if (interactible)
         {
             Debug.Log("Miam miam");
-
+            audio = GetComponent<AudioSource>();
+            audio.Play();
             spriteRenderer.sprite = eaten;
 
             StartCoroutine(WaitForAnimation());
