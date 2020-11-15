@@ -25,6 +25,7 @@ public class SpyCrow : SpyCircle
         if (state == CROWSTATE.OBSERVING && Vector3.Distance(playerPosition, transform.position) < visionDistance)
         {
             StartCoroutine(flyYouFool());
+            spawnExclamation();
             //Report();
         }
     }

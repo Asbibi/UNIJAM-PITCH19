@@ -75,6 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sanctionScore: 50
+  exclamationPoint: {fileID: 7450071644259394771, guid: f5a9b7ab67b96bb41b49d45b5730c262,
+    type: 3}
   visionDistance: 5
   visionTransform: {fileID: 8037007590026145620}
   animator: {fileID: 5279462358990181660}
