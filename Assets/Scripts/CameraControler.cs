@@ -17,6 +17,6 @@ public class CameraControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3( Mathf.SmoothDamp(transform.position.x, player.transform.position.x,ref speed, smoothTime), (float)0.2301188, transform.position.z);
+        transform.position = new Vector3( Mathf.SmoothDamp(transform.position.x, player.transform.position.x,ref speed, smoothTime), player.transform.position.y, transform.position.z);
     }
 }
