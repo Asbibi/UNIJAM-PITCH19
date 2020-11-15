@@ -17,7 +17,6 @@ public class InteractionChangeSprite : Interaction
     {
         if (interactible)
         {
-            Debug.Log("Miam miam");
             if(GetComponent<AudioSource>() != null)
             {
                 GetComponent<AudioSource>().Play();
@@ -28,8 +27,7 @@ public class InteractionChangeSprite : Interaction
             StartCoroutine(WaitForAnimation());
 
             int NbPoints = Random.Range(0, pointsGiven);
-
-            Debug.Log("adding " + NbPoints + " points");
+            GameManager.NotifyTroubleDone(NbPoints);
 
             interactible = false;
 
@@ -42,7 +40,6 @@ public class InteractionChangeSprite : Interaction
             }
 
 
-            GameManager.NotifyTroubleDone(NbPoints);
         }
         
     }

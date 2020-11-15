@@ -5,18 +5,18 @@ using UnityEngine;
 public class paralaxScript : MonoBehaviour
 {
     private float length, startpos;
-    public GameObject camera;
+    public GameObject cam;
     public float parallaxEffect;
 
     void Start()
     {
         startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        length = GetComponentInChildren<SpriteRenderer>().bounds.size.x;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        float dist = (camera.transform.position.x * parallaxEffect);
+        float dist = (cam.transform.position.x * parallaxEffect);
         transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
     }
 }
