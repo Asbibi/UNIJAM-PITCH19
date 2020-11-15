@@ -25,9 +25,9 @@ public class MasterController : MonoBehaviour
     }
     public void Resume()
     {
-        GetComponent<Animator>().SetBool("idle", true);
+        GetComponentInChildren<Animator>().SetBool("idle", true);
         StartCoroutine(waitBeforeStarting(3));
-        GetComponent<Animator>().SetBool("idle", false);
+        GetComponentInChildren<Animator>().SetBool("idle", false);
     }
 
     private void Update()
