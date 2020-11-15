@@ -40,6 +40,7 @@ public class PlayerControler : MonoBehaviour
     //ajout Paul1
     public Transform replacePosition = null;
     private bool replacement = false;
+    public bool replacing = false;
     private float positionYBase;
 
 
@@ -164,6 +165,12 @@ public class PlayerControler : MonoBehaviour
             {
                 currentInteractableObject.GetComponent<Interaction>().Interact();
             }
+            else if(currentInteractableObject.GetComponent<InteractionEndLevel>() != null)
+            {
+                Debug.Log("EndGame");
+                Destroy(currentInteractableObject.GetComponent<InteractionEndLevel>());
+                GameManager.EndGameByPlayer();
+            }
         }
     }
 
@@ -180,7 +187,7 @@ public class PlayerControler : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         string colTag = col.gameObject.tag;
-        Debug.Log(colTag + " " + col.gameObject.name);
+        //Debug.Log(colTag + " " + col.gameObject.name);
         if (colTag == "Interactable")
         {
             currentInteractableObject = col.gameObject;/*
@@ -200,7 +207,7 @@ public class PlayerControler : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        Debug.LogWarning("exit " + col.gameObject.tag);
+        //Debug.LogWarning("exit " + col.gameObject.tag);
         if (col.gameObject == currentInteractableObject)
         {
             /*
@@ -316,7 +323,9 @@ public class PlayerControler : MonoBehaviour
         yield return new WaitForSeconds(1);
         transform.position = Vector3.MoveTowards(transform.position, replacePosition.position, 10 * Time.deltaTime);
         setReplacement(false);
+        replacing = true;
         yield return new WaitForSeconds(1);
+        replacing = false;
         setCanMove(true);
     }
     #endregion
