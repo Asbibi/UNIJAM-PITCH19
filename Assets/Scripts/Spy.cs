@@ -9,7 +9,7 @@ public class Spy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.onTroubleDone += OnTroubleNotified;
     }
 
     virtual protected void OnTroubleNotified(Vector3 playerPosition)

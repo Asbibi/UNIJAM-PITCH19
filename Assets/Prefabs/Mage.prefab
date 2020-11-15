@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b22e4f188029694d938f604ed2f58aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sanctionScore: 1
-  visionDistance: 3
+  sanctionScore: 500
+  visionDistance: 5
   visionPivot: {fileID: 6901502344052598805}
   uTurnDelay: 2
 --- !u!1 &6901502343476314814

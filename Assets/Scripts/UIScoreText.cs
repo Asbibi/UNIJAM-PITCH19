@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class UIScoreText : MonoBehaviour
 {
-    public void Init(float score, Camera cam, Vector3 playerTransform)
+    public void Init(string txt, Camera cam, Vector3 playerTransform)
     {
-        GetComponentInChildren<Text>().text = "+" + score + " !";
+        GetComponentInChildren<Text>().text = txt;
         GetComponent<RectTransform>().position = cam.WorldToScreenPoint(playerTransform);
         StartCoroutine(kill());
     }
