@@ -241,7 +241,7 @@ public class PlayerControler : MonoBehaviour
             dif = transform.position.x - col.bounds.center.x;
             yield return null;
         }
-        while (_currentHeight < col.bounds.size.y - 0.1)
+        while (_currentHeight < col.bounds.size.y - 0.2f)
         {
             animator.SetBool("onLadder", true);
             _currentHeight += ladderSpeed * Time.deltaTime;
