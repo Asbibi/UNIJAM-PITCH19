@@ -7390,7 +7390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725293939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 97.9, y: -6.3, z: 0}
+  m_LocalPosition: {x: -46, y: -6.5, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.7}
   m_Children:
   - {fileID: 385932394}
@@ -17401,7 +17401,7 @@ MonoBehaviour:
   master: {fileID: 5837351867284099826}
   canva: {fileID: 2018648992}
   mainCam: {fileID: 1135305682}
-  gameTime: 20
+  gameTime: 60
   scoreText: {fileID: 674015293}
   scoreTextUi: {fileID: 3969153240058279031, guid: 4603c7a02cf996c45a5ff80838cef8ca,
     type: 3}
@@ -26885,7 +26885,7 @@ MonoBehaviour:
   sanctionScore: 500
   exclamationPoint: {fileID: 7450071644259394771, guid: f5a9b7ab67b96bb41b49d45b5730c262,
     type: 3}
-  visionDistance: 6
+  visionDistance: 3
   visionTransform: {fileID: 5837351865576467954}
 --- !u!1 &5837351867284099825
 GameObject:
