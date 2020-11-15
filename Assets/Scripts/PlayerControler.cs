@@ -155,7 +155,7 @@ public class PlayerControler : MonoBehaviour
         {
             if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
             {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<Collider2D>()));
+                StartCoroutine(Ladder(currentInteractableObject.GetComponent<Collider2D>().bounds.center.y > transform.position.y, currentInteractableObject.GetComponent<Collider2D>()));
             }
             else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
             {
