@@ -70,6 +70,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("GameManager instance null");
         }
+        if (instance.player.getReplacement())
+        {
+            instance.master.GetComponent<Animator>().SetBool("lookback", true);
+        }
+        else
+        {
+            instance.master.GetComponent<Animator>().SetBool("lookback", false);
+        }
     }
 
     // Actions et animations à effectuer quand la partie est finie
