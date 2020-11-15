@@ -37,6 +37,10 @@ public class InteractionChangeSprite : Interaction
             {
                 transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
             }
+            if (transform.Find("AnimationToDisable")){
+                transform.Find("AnimationToDisable").gameObject.SetActive(false);
+            }
+
 
             GameManager.NotifyTroubleDone(NbPoints);
         }
