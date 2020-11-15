@@ -7601,6 +7601,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: crow
+    clip: {fileID: 8300000, guid: f00fcbc51c179574bbfb794b73eba6b7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: crowdeath
+    clip: {fileID: 8300000, guid: de8d7ccdd90b48141819a125e60fefca, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1477166401
 Transform:
   m_ObjectHideFlags: 0
