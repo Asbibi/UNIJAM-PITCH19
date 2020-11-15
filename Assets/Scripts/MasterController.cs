@@ -39,7 +39,7 @@ public class MasterController : MonoBehaviour
         transform.position = Vector3.Lerp(startPosition.position, endPosition.position, (currentTime / travelTime));
         if (currentTime >= travelTime)
         {
-            GameManager.EndGame();
+            GameManager.EndGameByMaster();
             started = false;
         }
 

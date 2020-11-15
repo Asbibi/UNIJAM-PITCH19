@@ -9,10 +9,10 @@ public class SwordAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D target)
     {
-        Debug.Log("Colide");
+        //Debug.Log("Colide");
         if (target.CompareTag("Destructible"))
         {
-            Debug.Log("sos");
+            //Debug.Log("sos");
             target.GetComponent<Destructible>().TakeDamage();
         }
     }
