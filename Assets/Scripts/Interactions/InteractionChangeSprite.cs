@@ -27,7 +27,7 @@ public class InteractionChangeSprite : Interaction
 
             StartCoroutine(WaitForAnimation());
 
-            int NbPoints = Random.Range(0, pointsGiven);
+            int NbPoints = pointsGiven;
 
             Debug.Log("adding " + NbPoints + " points");
 
