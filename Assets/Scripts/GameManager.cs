@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("highscore", score);
         }
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("MenuScene");
         Debug.Log("Finito");
     }
 
