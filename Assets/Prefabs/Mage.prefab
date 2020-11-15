@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sanctionScore: 500
+  exclamationPoint: {fileID: 7450071644259394771, guid: f5a9b7ab67b96bb41b49d45b5730c262,
+    type: 3}
   visionDistance: 5
   visionPivot: {fileID: 6901502344052598805}
+  facingRight: 1
   uTurnDelay: 2
 --- !u!1 &6901502343476314814
 GameObject:
