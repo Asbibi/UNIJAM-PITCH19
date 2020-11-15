@@ -26,7 +26,8 @@ public class InteractionChangeSprite : Interaction
 
             StartCoroutine(WaitForAnimation());
 
-            int NbPoints = Random.Range(0, pointsGiven);
+            int NbPoints = pointsGiven;
+
             GameManager.NotifyTroubleDone(NbPoints);
 
             interactible = false;
