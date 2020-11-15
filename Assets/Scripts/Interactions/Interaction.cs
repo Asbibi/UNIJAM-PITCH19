@@ -24,20 +24,19 @@ public abstract class Interaction : MonoBehaviour
 
     public abstract void Interact();
 
+    public bool isInteractible()
+    {
+        return interactible;
+    }
+
     protected IEnumerator WaitForAnimation()
     {
         playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
 
         playerControler.GetComponent<PlayerControler>().LockPlayer();
 
-        //Print the time of when the function is first called.
-        Debug.Log("Started Interaction at timestamp : " + Time.time);
-
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(animationTime * Time.deltaTime);
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Interaction at timestamp : " + Time.time);
 
         playerControler.GetComponent<PlayerControler>().FreePlayer();
     }
