@@ -11,9 +11,7 @@ public class DestructibleCrow : Destructible
     {
         if (interactable)
         {
-            
-
-            Debug.Log("Crow Stuned");            
+            //Debug.Log("Crow Stuned");            
             GetComponent<SpyCrow>().Stunned();
 
             

@@ -20,7 +20,10 @@ public class SpyGuard : SpyLinear
 
         if (timerUturn > travelTime || timerUturn < 0)
         {
-            facingRight = !facingRight;
+            if (timerUturn < 0)
+                facingRight = true;
+            else
+                facingRight = false;
 
             if (facingRight)
                 transform.rotation = Quaternion.Euler(0, 0, 0);

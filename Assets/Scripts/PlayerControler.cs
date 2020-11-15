@@ -40,6 +40,7 @@ public class PlayerControler : MonoBehaviour
     //ajout Paul1
     public Transform replacePosition = null;
     private bool replacement = false;
+    public bool replacing = false;
     private float positionYBase;
 
 
@@ -154,7 +155,7 @@ public class PlayerControler : MonoBehaviour
         {
             if (currentInteractableObject.GetComponent<InteractionLadder>() != null)
             {
-                StartCoroutine(Ladder(transform.position.y < 0, currentInteractableObject.GetComponent<Collider2D>()));
+                StartCoroutine(Ladder(currentInteractableObject.GetComponent<Collider2D>().bounds.center.y > transform.position.y, currentInteractableObject.GetComponent<Collider2D>()));
             }
             else if (currentInteractableObject.GetComponent<InteractionBalcon>() != null)
             {
@@ -163,6 +164,12 @@ public class PlayerControler : MonoBehaviour
             else if (currentInteractableObject.GetComponent<Interaction>() != null)
             {
                 currentInteractableObject.GetComponent<Interaction>().Interact();
+            }
+            else if(currentInteractableObject.GetComponent<InteractionEndLevel>() != null)
+            {
+                Debug.Log("EndGame");
+                Destroy(currentInteractableObject.GetComponent<InteractionEndLevel>());
+                GameManager.EndGameByPlayer();
             }
         }
     }
@@ -182,7 +189,7 @@ public class PlayerControler : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         string colTag = col.gameObject.tag;
-        Debug.Log(colTag + " " + col.gameObject.name);
+        //Debug.Log(colTag + " " + col.gameObject.name);
         if (colTag == "Interactable")
         {
             currentInteractableObject = col.gameObject;
@@ -202,7 +209,7 @@ public class PlayerControler : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        Debug.LogWarning("exit " + col.gameObject.tag);
+        //Debug.LogWarning("exit " + col.gameObject.tag);
 
         if (col.transform.Find("Outline") != null && col.transform.Find("Outline").GetComponent<SpriteRenderer>() != null)
         {
@@ -234,7 +241,7 @@ public class PlayerControler : MonoBehaviour
             dif = transform.position.x - col.bounds.center.x;
             yield return null;
         }
-        while (_currentHeight < col.bounds.size.y - 0.1)
+        while (_currentHeight < col.bounds.size.y - 0.2f)
         {
             animator.SetBool("onLadder", true);
             _currentHeight += ladderSpeed * Time.deltaTime;
@@ -319,7 +326,9 @@ public class PlayerControler : MonoBehaviour
         yield return new WaitForSeconds(1);
         transform.position = Vector3.MoveTowards(transform.position, replacePosition.position, 10 * Time.deltaTime);
         setReplacement(false);
+        replacing = true;
         yield return new WaitForSeconds(1);
+        replacing = false;
         setCanMove(true);
     }
     #endregion

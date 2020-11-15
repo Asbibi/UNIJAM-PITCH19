@@ -20,7 +20,7 @@ public class Destructible : MonoBehaviour
     {
         if (interactable)
         {
-            int NbPoints = Random.Range(0, points);
+            int NbPoints = points;
             GameManager.NotifyTroubleDone(NbPoints);
             spriteRenderer.sprite = broken;
             FindObjectOfType<AudioManager>().Play("vase");

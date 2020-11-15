@@ -190,7 +190,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.14275512}
+  m_Size: {x: 8.91, y: 19.35}
   m_EdgeRadius: 0
 --- !u!114 &3445484268393552799
 MonoBehaviour:
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTime: 1
-  pointsGiven: 25
+  pointsGiven: 1000
   modifiedSprite: {fileID: 21300000, guid: d372cce5f47810d4eaa57d8994b94ee0, type: 3}
 --- !u!82 &8887271802730704927
 AudioSource:
