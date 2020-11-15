@@ -66,8 +66,11 @@ public class PlayerControler : MonoBehaviour
             TurnAround();
         }
         else
+        {
             playerRB.velocity = Vector2.zero;
-        AttackTimer();
+            animator.SetBool("walkin", false);
+        }
+            AttackTimer();
 
         if (replacement)
         {
@@ -98,6 +101,7 @@ public class PlayerControler : MonoBehaviour
         else if (walledL && InputSpeed.x < 0)
             InputSpeed.x = 0;
         playerRB.velocity = new Vector2(InputSpeed.x * playerSpeed * Time.deltaTime, playerRB.velocity.y);
+        animator.SetBool("walkin", Mathf.Abs(InputSpeed.x) > 0);
     }
     public void SetInputSpeed(Vector2 InputSpeed)
     {
@@ -291,6 +295,10 @@ public class PlayerControler : MonoBehaviour
     public void setReplacement(bool replacementSetting)
     {
         replacement = replacementSetting;
+    }
+    public bool getReplacement()
+    {
+        return replacement;
     }
     public void replacementAnim()
     {

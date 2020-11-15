@@ -72,6 +72,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("GameManager instance null");
         }
+        if (instance.player.getReplacement())
+        {
+            instance.master.GetComponent<Animator>().SetBool("lookback", true);
+        }
+        else
+        {
+            instance.master.GetComponent<Animator>().SetBool("lookback", false);
+        }
     }
 
     static public Transform GetMasterTransform()
