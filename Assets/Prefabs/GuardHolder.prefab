@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4a9cefeeec33e4e883b26266611705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sanctionScore: 800
+  sanctionScore: 2000
   exclamationPoint: {fileID: 7450071644259394771, guid: f5a9b7ab67b96bb41b49d45b5730c262,
     type: 3}
   visionDistance: 5

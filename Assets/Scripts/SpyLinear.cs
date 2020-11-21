@@ -17,15 +17,18 @@ public class SpyLinear : Spy
 
     override protected void OnTroubleNotified(Vector3 playerPosition)
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right, visionDistance);
-        //Debug.DrawRay(transform.position, transform.right * visionDistance, Color.white);
-        foreach (RaycastHit2D hit in hits)
+        if (gameObject.activeInHierarchy)
         {
-            if (hit)
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right, visionDistance);
+            //Debug.DrawRay(transform.position, transform.right * visionDistance, Color.white);
+            foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.tag == "Player")
+                if (hit)
                 {
-                    Report();
+                    if (hit.collider.tag == "Player")
+                    {
+                        Report();
+                    }
                 }
             }
         }
